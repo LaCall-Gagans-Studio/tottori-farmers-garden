@@ -39,13 +39,14 @@ export default async function HomePage() {
             Go to admin panel
           </a>
           <a
-            className="docs"
+            className="docs bg-amber-400"
             href="https://payloadcms.com/docs"
             rel="noopener noreferrer"
             target="_blank"
           >
             Documentation
           </a>
+          <div className='text-7xl'>aaaa</div>
         </div>
       </div>
       <div className="footer">
