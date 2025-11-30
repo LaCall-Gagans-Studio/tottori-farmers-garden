@@ -17,7 +17,13 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full bg-red-600 text-white px-6 py-4 flex justify-between items-center shadow-md z-50">
       {/* 左：大きめロゴ */}
       <div>
-        <Image src="/logo.jpg" alt="Logo" width={80} height={80} />
+        <Image
+          src="/images/header-logo.png"
+          alt="Logo"
+          width={80}
+          height={80}
+          className="object-contain"
+        />
       </div>
 
       {/* 右：ハンバーガーボタン (Animated) */}

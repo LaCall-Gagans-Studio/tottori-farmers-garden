@@ -67,10 +67,7 @@ export default function About() {
                 また、地域の子どもたちに安心できる食事を提供する
                 「子ども食堂」の活動にも積極的に参加しています。
               </p>
-              <p className="flex items-center justify-center md:justify-start gap-2 text-sm text-ws-black/60 pt-2">
-                <span className="w-3 h-3 rounded-full bg-[#BCE2BE]"></span>
-                <span>ミントカラーが好き</span>
-              </p>
+              <p>ミントカラーが好き</p>
             </div>
           </div>
         </div>
