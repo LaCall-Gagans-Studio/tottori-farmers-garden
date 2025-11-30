@@ -21,6 +21,10 @@
   --color-ws-white: #ffffff;
   --color-ws-black: #333200; /* JSから移植 */
   --color-ws-gray: #e1e6d8; /* JSから移植 */
+  --color-ws-wood: #e6d5c1; /* Hard Maple Color */
+
+  /* Background Image (Placeholder for Wood Texture) */
+  --bg-wood-pattern: url('/images/wood-texture.jpg');
 
   /* Keyframes: JSから移植 */
   @keyframes ticker {
@@ -66,6 +70,14 @@
   html[data-theme='dark'],
   html[data-theme='light'] {
     opacity: initial;
+  }
+
+  body {
+    background-color: var(--color-ws-wood);
+    background-image: var(--bg-wood-pattern);
+    background-repeat: repeat;
+    background-size: 400px; /* Adjust based on texture resolution */
+    background-blend-mode: multiply; /* Blends texture with color */
   }
 }
 
