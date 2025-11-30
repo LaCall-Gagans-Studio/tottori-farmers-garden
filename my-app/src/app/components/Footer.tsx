@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
           {/* Left Side: Text Area (Company, Address, Phone) */}
-          <div className="w-full md:w-1/2 flex flex-col space-y-6">
+          <div className="w-full md:w-1/2 flex flex-col justify-between h-80">
             <div>
               <h2 className="text-3xl font-bold mb-2 font-zenKakuGothicAntique">
                 鳥取ファーマーズガーデン
