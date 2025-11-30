@@ -1,4 +1,5 @@
 /* 1. フォントのインポートは一番上 */
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kosugi&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
@@ -9,6 +10,7 @@
 /* 3. テーマ設定 (以前の tailwind.config.js の内容をここに統合) */
 @theme {
   /* Fonts */
+  --font-kiwi: 'Kiwi Maru', serif;
   --font-kosugi: 'Kosugi', sans-serif;
   --font-zenKakuGothicNew: 'Zen Kaku Gothic New', sans-serif;
   --font-zenKakuGothicAntique: serif;
@@ -62,8 +64,8 @@
   h4,
   h5,
   h6 {
-    font-size: unset;
-    font-weight: unset;
+    font-family: var(--font-kiwi);
+    font-weight: 500;
   }
 
   /* ダークモード/ライトモードのちらつき防止 */
@@ -73,6 +75,8 @@
   }
 
   body {
+    font-family: var(--font-kiwi);
+    font-weight: 300;
     background-color: var(--color-ws-wood);
     background-image: var(--bg-wood-pattern);
     background-repeat: repeat;
