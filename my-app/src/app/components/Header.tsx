@@ -1,9 +1,24 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // 100pxスクロールしたら背景色を変更
+      if (window.scrollY > 100) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const menuItems = [
     { label: 'Home', href: '#home' },
@@ -14,7 +29,11 @@ export default function Header() {
   ]
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-red-600 text-white px-6 py-4 flex justify-between items-center shadow-md z-50">
+    <header
+      className={`fixed top-4 left-[2%] w-[96%] px-6 py-3 flex justify-between items-center z-50 transition-all duration-300 rounded-full ${
+        isScrolled ? 'bg-red-600 shadow-lg' : 'bg-transparent'
+      }`}
+    >
       {/* 左：大きめロゴ */}
       <div>
         <Image
