@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-[#D32F2F] text-white py-16 font-zenKakuGothicNew">
+    <footer className="bg-red-600 text-white py-16 font-zenKakuGothicNew">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
           {/* Left Side: Text Area (Company, Address, Phone) */}
@@ -25,6 +25,33 @@ export default function Footer() {
                 <span className="font-bold min-w-[5em]">電話番号</span>
                 <a href="tel:0857-50-0910" className="hover:underline font-bold">
                   0857-50-0910
+                </a>
+              </div>
+              {/* Instagram Link */}
+              <div className="flex items-center gap-2 pt-2">
+                <span className="min-w-[5em]"></span>
+                <a
+                  href="https://www.instagram.com/farmars_garden/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                  aria-label="Instagram"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
                 </a>
               </div>
             </div>

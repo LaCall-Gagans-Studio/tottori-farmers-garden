@@ -5,6 +5,14 @@ import Image from 'next/image'
 export default function Header() {
   const [open, setOpen] = useState(false)
 
+  const menuItems = [
+    { label: 'Home', href: '#home' },
+    { label: 'News', href: '#news' },
+    { label: 'Products', href: '#products' },
+    { label: 'About us', href: '#about' },
+    { label: 'Contact us', href: '#contact' },
+  ]
+
   return (
     <header className="fixed top-0 left-0 w-full bg-red-600 text-white px-6 py-4 flex justify-between items-center shadow-md z-50">
       {/* 左：大きめロゴ */}
@@ -12,28 +20,46 @@ export default function Header() {
         <Image src="/logo.jpg" alt="Logo" width={80} height={80} />
       </div>
 
-      {/* 右：ハンバーガーボタン */}
+      {/* 右：ハンバーガーボタン (Animated) */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex flex-col justify-between w-8 h-6 focus:outline-none"
+        className="flex flex-col justify-center items-center w-8 h-8 focus:outline-none z-[70] space-y-1.5"
+        aria-label={open ? 'Close menu' : 'Open menu'}
       >
-        <span className="block h-1 bg-white rounded"></span>
-        <span className="block h-1 bg-white rounded"></span>
-        <span className="block h-1 bg-white rounded"></span>
+        <span
+          className={`block w-8 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out ${
+            open ? 'rotate-45 translate-y-2' : ''
+          }`}
+        ></span>
+        <span
+          className={`block w-8 h-0.5 bg-white rounded transition-opacity duration-300 ease-in-out ${
+            open ? 'opacity-0' : 'opacity-100'
+          }`}
+        ></span>
+        <span
+          className={`block w-8 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out ${
+            open ? '-rotate-45 -translate-y-2' : ''
+          }`}
+        ></span>
       </button>
 
-      {/* メニュー */}
+      {/* フルスクリーンメニュー */}
       {open && (
-        <nav className="absolute top-20 right-6 bg-white text-black border border-gray-300 rounded-lg shadow-lg p-4 space-y-4 z-50">
-          <a href="#home" onClick={() => setOpen(false)}>
-            ホーム
-          </a>
-          <a href="#about" onClick={() => setOpen(false)}>
-            私たちについて
-          </a>
-          <a href="#contact" onClick={() => setOpen(false)}>
-            お問い合わせ
-          </a>
+        <nav className="fixed inset-0 bg-red-600 z-[60] flex flex-col items-center justify-center animate-in fade-in duration-300">
+          {/* メニューリスト */}
+          <ul className="space-y-8 text-center">
+            {menuItems.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="text-3xl md:text-4xl font-bold font-zenKakuGothicAntique hover:opacity-80 transition-opacity text-white"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
       )}
     </header>
