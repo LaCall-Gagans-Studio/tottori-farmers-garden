@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 
 // --- Types ---
@@ -52,23 +52,77 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
 
 export default function News() {
   const [offset, setOffset] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(1200) // Default to desktop
+  const itemWidthRef = useRef(600)
+
+  // Handle resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+      const isMobile = window.innerWidth < 768
+      const cardWidth = isMobile ? 300 : 450
+      const gap = isMobile ? 20 : 150
+      itemWidthRef.current = cardWidth + gap
+    }
+
+    // Initial call
+    handleResize()
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Animation loop
   useEffect(() => {
     let animationFrameId: number
-    let lastTime = performance.now()
-    const speed = 0.05 // Pixels per ms
+    let isPausing = true
+    let pauseStartTime = performance.now()
+
+    // Calculate initial offset to center the first card
+    // We want relativeX = 0 for index 0.
+    // relativeX = x - containerCenter + itemWidth/2
+    // x = -offset
+    // 0 = -offset - containerCenter + itemWidth/2
+    // offset = itemWidth/2 - containerCenter
+    // Note: This initial calculation is approximate because windowWidth might update.
+    // But the loop will take over.
+    // Let's start with a "centered" state for whatever the defaults are.
+    let startOffset = 300 - 600 // -300 for default desktop
+    let targetOffset = startOffset
+
+    // Update startOffset once we have real dimensions?
+    // Actually, let's just let the loop run.
+    // If we want to force center on load, we might need to reset offset when windowWidth is first set.
+    // But let's keep it simple.
+
+    let startTime = 0
+    const pauseDuration = 3000
+    const moveDuration = 1000
 
     const animate = (time: number) => {
-      const deltaTime = time - lastTime
-      lastTime = time
+      const itemWidth = itemWidthRef.current
 
-      setOffset((prev) => {
-        const newOffset = prev + speed * deltaTime
-        // Reset offset to loop seamlessly
-        // We have 5 posts, spacing is 500px -> total width 2500px
-        return newOffset % (500 * INSTAGRAM_POSTS.length)
-      })
+      if (isPausing) {
+        if (time - pauseStartTime >= pauseDuration) {
+          isPausing = false
+          startTime = time
+          startOffset = targetOffset
+          targetOffset = startOffset + itemWidth
+        }
+      } else {
+        const elapsed = time - startTime
+        const progress = Math.min(elapsed / moveDuration, 1)
+        // Ease out cubic
+        const ease = 1 - Math.pow(1 - progress, 3)
+
+        const current = startOffset + (targetOffset - startOffset) * ease
+        setOffset(current)
+
+        if (progress >= 1) {
+          isPausing = true
+          pauseStartTime = time
+        }
+      }
 
       animationFrameId = requestAnimationFrame(animate)
     }
@@ -79,8 +133,9 @@ export default function News() {
 
   // Helper to calculate card style based on position
   const getCardStyle = (index: number) => {
-    const cardWidth = 400 // Increased from 280
-    const gap = 100 // Increased gap
+    const isMobile = windowWidth < 768
+    const cardWidth = isMobile ? 300 : 450
+    const gap = isMobile ? 20 : 150
     const itemWidth = cardWidth + gap
     const totalWidth = itemWidth * INSTAGRAM_POSTS.length
 
@@ -96,44 +151,30 @@ export default function News() {
     while (x > totalWidth - itemWidth) x -= totalWidth
 
     // Center the coordinate system for curve calculation
-    // Container width is roughly 1200px (max-w-6xl)
-    // Let's say center is 0
-    const containerCenter = 600 // Half of 1200
+    // Use windowWidth for true centering
+    const containerCenter = windowWidth / 2
     const relativeX = x - containerCenter + itemWidth / 2 // Center of the card relative to container center
 
     // Parabola: y = a * x^2 + c
-    // SVG Curve: Start/End at Y=20, Center at Y=220.
+    // SVG Curve: Start/End at Y=0, Center at Y=80 (Gentler curve, sag 80).
     // In CSS coords (relative to container top):
-    // Center (x=0) -> y=220 (Lowest point)
-    // Edges (x=+-600) -> y=20 (Highest point)
-    // Formula: y = 220 - k * x^2
-    // At x=600: 20 = 220 - k * 360000
-    // 200 = k * 360000
-    // k = 200 / 360000 = 1 / 1800
+    // Center (x=0) -> y=80 (Lowest point)
+    // Edges (x=+-600) -> y=0 (Highest point)
+    // Formula: y = 80 - k * x^2
+    // At x=600: 0 = 80 - k * 360000
+    // 80 = k * 360000
+    // k = 80 / 360000 = 1 / 4500
 
-    const k = 200 / (600 * 600)
-    const ropeY = 220 - k * relativeX * relativeX
+    // Adjust k for mobile?
+    // On mobile, width is smaller.
+    // If we keep same k, the curve might look flat because x range is smaller.
+    // Let's keep k constant for now or adjust based on width.
+    // A constant k means the "rope shape" is the same physical curve.
+    const k = 80 / (600 * 600)
+    const ropeY = 80 - k * relativeX * relativeX
 
     // Rotation: derivative of the curve
     // y' = -2 * k * x
-    // Slope is negative on right (going up? No, y decreases as x increases away from center? Wait.)
-    // Formula: y = 220 - kx^2.
-    // x=0 -> 220. x=10 -> 219. (Going UP visually, decreasing Y value).
-    // So slope is negative.
-    // Visual: Rope goes UP to the right. /
-    // Slope < 0.
-    // Rotation should be negative (counter-clockwise) for / ?
-    // No, standard rotation: + is clockwise.
-    // / is negative slope in CSS coords? (x+, y-). Yes.
-    // We want card to tilt /. That is NEGATIVE rotation (counter-clockwise).
-    // My formula y' = -2kx. For x>0, y' < 0.
-    // atan(y') will be negative.
-    // Let's check Left side (x<0).
-    // y' = -2k(-x) = +2kx > 0.
-    // Slope is positive (x+, y+). Going DOWN visually?
-    // Formula y = 220 - kx^2.
-    // x=-10 -> 219. x=0 -> 220.
-    // As x increases (moves right), y increases (moves down).
     // So slope is positive. Visual: \
     // We want card to tilt \. That is POSITIVE rotation (clockwise).
     // atan(y') will be positive.
@@ -147,16 +188,16 @@ export default function News() {
     // Card is centered by translate.
     // If we translate by ropeY, the CENTER of the card is at ropeY.
     // We want the TOP of the card to be at ropeY.
-    // Card height is roughly 500px (width 400 + padding + image + text).
-    // Half height is ~250.
+    // Card height is roughly 600px (width 450 + padding + image + text).
+    // Half height is ~300.
     // We want top of card at ropeY.
-    // So center should be at ropeY + 250.
-    const cardHalfHeight = 230 // Approximate for 400px width card
+    // So center should be at ropeY + 300.
+    const cardHalfHeight = 280 // Approximate for 450px width card
     const finalY = ropeY + cardHalfHeight - 20 // -20 fine tuning for clip position
 
     // Opacity/Visibility
     // If x is way off screen, hide it
-    const isVisible = x > -600 && x < 1800
+    const isVisible = x > -800 && x < 2000
 
     return {
       transform: `translate(${x}px, ${finalY}px) rotate(${rotation}deg)`,
@@ -171,12 +212,12 @@ export default function News() {
   }
 
   return (
-    <section className="py-24 px-6 bg-ws-background font-zenKakuGothicNew overflow-hidden">
+    <section className="py-10 px-6 bg-ws-background font-zenKakuGothicNew overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12 text-ws-red font-script">News</h2>
+          <h2 className="text-4xl font-bold text-center mb-6 text-ws-red font-script">News</h2>
         </div>
-        <div className="text-center mb-16">
+        <div className="text-center mb-4">
           <a
             href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
             target="_blank"
@@ -203,22 +244,17 @@ export default function News() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative h-[600px] w-full overflow-hidden">
+        <div className="relative h-[900px] w-full overflow-hidden">
           {/* Single Large Rope SVG */}
           <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
             {/* 
               Curve matching our math:
-              Start: (-600, 20)
-              Control: (0, 220) -> Quadratic bezier approximation for parabola
-              End: (600, 20)
-              
-              Note: SVG coordinates are 0 to 100% width.
-              Center is 50%.
-              y=20 at 0% and 100%.
-              y=120 at 50%.
+              Start: (-600, 0)
+              Control: (0, 80) -> Quadratic bezier approximation for parabola
+              End: (600, 0)
             */}
             <path
-              d="M -100,20 Q 50%,220 110%,20"
+              d="M -100,0 Q 50%,80 110%,0"
               fill="none"
               stroke="#A0522D"
               strokeWidth="6"
@@ -234,7 +270,7 @@ export default function News() {
                 href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-white p-4 pb-8 rounded-sm shadow-lg hover:shadow-2xl w-[400px]"
+                className="group block bg-white p-3 pb-6 rounded-sm shadow-lg hover:shadow-2xl"
                 style={getCardStyle(index)}
               >
                 {/* Clips */}
@@ -252,7 +288,7 @@ export default function News() {
                     <span className="text-white font-bold">View on Instagram</span>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-4">
                   <p className="text-sm text-ws-black/50 mb-2 font-bold">{post.date}</p>
                   <p className="text-base text-ws-black/80 line-clamp-2">{post.caption}</p>
                 </div>
