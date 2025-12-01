@@ -107,7 +107,7 @@ export default function News() {
             key={currentIndex}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
             style={{
-              animation: 'slideInFromRight 0.8s ease-out',
+              animation: 'slideInFromRight 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             }}
           >
             {visiblePosts.map((post, index) => (
