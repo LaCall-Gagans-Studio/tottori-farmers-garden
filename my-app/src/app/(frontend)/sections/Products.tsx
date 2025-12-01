@@ -100,9 +100,17 @@ export default function Products() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12 text-ws-green font-script">
-            Products
-          </h2>
+          <div className="flex justify-center mb-12">
+            <div className="relative w-48 h-16">
+              <Image
+                src="/images/products_title.png"
+                alt="Products"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
           <p className="text-ws-black/70 text-lg">
             鳥取の自然が育んだ、至高の味わいをお届けします。
           </p>

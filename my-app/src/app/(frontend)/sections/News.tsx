@@ -215,7 +215,17 @@ export default function News() {
     <section className="py-10 px-6 bg-ws-background font-zenKakuGothicNew overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-6 text-ws-red font-script">News</h2>
+          <div className="flex justify-center mb-6">
+            <div className="relative w-96 h-40">
+              <Image
+                src="/images/news_title.png"
+                alt="News"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
         </div>
         <div className="text-center mb-4">
           <a
