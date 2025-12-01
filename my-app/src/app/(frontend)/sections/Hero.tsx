@@ -33,7 +33,7 @@ export default function Hero() {
         <p
           className="text-xl md:text-2xl font-medium tracking-wider font-zenKakuGothicNew"
           style={{
-            animation: 'slideInFromRight 1.2s ease-out 0.3s both',
+            animation: 'slideInFromRight 1.2s. ease-out 0.3s both',
           }}
         >
           自然の恵みを、そのまま食卓へ
