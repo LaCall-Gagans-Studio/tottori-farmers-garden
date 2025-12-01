@@ -99,9 +99,9 @@ export default function Products() {
     <section className="py-24 px-6 bg-ws-background text-ws-black font-zenKakuGothicNew">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-zenKakuGothicAntique text-ws-black">
-            Our Products
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-12 text-ws-green font-script">
+            Products
           </h2>
           <p className="text-ws-black/70 text-lg">
             鳥取の自然が育んだ、至高の味わいをお届けします。

@@ -72,10 +72,10 @@ export default function News() {
   return (
     <section className="py-24 px-6 bg-ws-background font-zenKakuGothicNew">
       <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-12 text-ws-red font-script">News</h2>
+        </div>
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-zenKakuGothicAntique text-ws-black">
-            News
-          </h2>
           <a
             href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
             target="_blank"

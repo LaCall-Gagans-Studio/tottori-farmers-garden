@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kosugi&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
 /* 2. Tailwind 本体とプラグインの読み込み */
 @import 'tailwindcss';
@@ -14,6 +15,7 @@
   --font-kosugi: 'Kosugi', sans-serif;
   --font-zenKakuGothicNew: 'Zen Kaku Gothic New', sans-serif;
   --font-zenKakuGothicAntique: serif;
+  --font-script: 'Dancing Script', cursive;
 
   /* Colors: JSとCSSの設定をマージしました */
   --color-ws-primary: #ffc34e; /* CSS側の値を優先 */

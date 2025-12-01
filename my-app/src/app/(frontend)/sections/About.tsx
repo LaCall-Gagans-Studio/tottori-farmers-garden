@@ -7,9 +7,9 @@ export default function About() {
     <section className="py-24 px-6 bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-zenKakuGothicAntique text-ws-black">
-            私たちについて
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-12 text-ws-black font-script">
+            About Us
           </h2>
           <p className="text-ws-black/70 text-lg font-zenKakuGothicNew">
             鳥取の豊かな自然と、そこに生きる人々の想いをつなぐ。
