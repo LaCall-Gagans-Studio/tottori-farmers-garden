@@ -48,20 +48,55 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
     date: '2025.11.10',
     caption: '大山が綺麗に見えました⛰️ 空気が澄んでいて気持ちいい！',
   },
+  {
+    id: '6',
+    imageUrl:
+      'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=800',
+    date: '2025.11.05',
+    caption: '秋の味覚、さつまいも掘り体験🍠 #鳥取 #収穫体験',
+  },
+  {
+    id: '7',
+    imageUrl:
+      'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&q=80&w=800',
+    date: '2025.11.01',
+    caption: '朝霧に包まれた農園。幻想的な風景です🌫️',
+  },
+  {
+    id: '8',
+    imageUrl:
+      'https://images.unsplash.com/photo-1622212611568-32d624f5f0ed?auto=format&fit=crop&q=80&w=800',
+    date: '2025.10.28',
+    caption: 'ハロウィンイベント開催！カボチャのランタン作り🎃',
+  },
+  {
+    id: '9',
+    imageUrl:
+      'https://images.unsplash.com/photo-1595855709915-445676d2a29e?auto=format&fit=crop&q=80&w=800',
+    date: '2025.10.25',
+    caption: '自家製ハーブティーでリラックスタイム🌿',
+  },
+  {
+    id: '10',
+    imageUrl:
+      'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=800',
+    date: '2025.10.20',
+    caption: '秋晴れの空の下、稲刈りが終わりました🌾',
+  },
 ]
 
 export default function News() {
   const [offset, setOffset] = useState(0)
   const [windowWidth, setWindowWidth] = useState(1200) // Default to desktop
-  const itemWidthRef = useRef(260)
+  const itemWidthRef = useRef(160)
 
   // Handle resize
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth)
       const isMobile = window.innerWidth < 768
-      const cardWidth = isMobile ? 180 : 220
-      const gap = isMobile ? 15 : 40
+      const cardWidth = isMobile ? 140 : 190
+      const gap = isMobile ? 10 : 20
       itemWidthRef.current = cardWidth + gap
     }
 
@@ -134,8 +169,8 @@ export default function News() {
   // Helper to calculate card style based on position
   const getCardStyle = (index: number) => {
     const isMobile = windowWidth < 768
-    const cardWidth = isMobile ? 180 : 220
-    const gap = isMobile ? 15 : 40
+    const cardWidth = isMobile ? 140 : 190
+    const gap = isMobile ? 10 : 20
     const itemWidth = cardWidth + gap
     const totalWidth = itemWidth * INSTAGRAM_POSTS.length
 
@@ -171,7 +206,7 @@ export default function News() {
     // Let's keep k constant for now or adjust based on width.
     // A constant k means the "rope shape" is the same physical curve.
     const k = 80 / (600 * 600)
-    const ropeY = 80 - k * relativeX * relativeX
+    const ropeY = 110 - k * relativeX * relativeX
 
     // Rotation: derivative of the curve
     // y' = -2 * k * x
@@ -187,14 +222,15 @@ export default function News() {
     // Clips are at -top-6 (-24px).
     // So if card top is at ropeY + 20, clips are at ropeY - 4.
     // This looks about right for "hanging".
-    const finalY = ropeY - 60
+    const finalY = ropeY + 20
 
     // Opacity/Visibility
     // If x is way off screen, hide it
-    const isVisible = x > -800 && x < 2000
+    const isVisible = x > -2000 && x < 4000
 
     return {
       transform: `translate(${x}px, ${finalY}px) rotate(${rotation}deg)`,
+      width: `${cardWidth}px`,
       opacity: isVisible ? 1 : 0,
       zIndex: 10,
       // Use absolute positioning relative to the container
@@ -206,19 +242,17 @@ export default function News() {
   }
 
   return (
-    <section className="py-10 px-6 font-zenKakuGothicNew overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-center mb-6">
-            <div className="relative w-96 h-40">
-              <Image
-                src="/images/news_title.png"
-                alt="News"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
+    <section className="py-10 font-zenKakuGothicNew overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex justify-center mb-6">
+          <div className="relative w-96 h-40">
+            <Image
+              src="/images/news_title.png"
+              alt="News"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
         <div className="text-center mb-4">
@@ -246,59 +280,58 @@ export default function News() {
             @farmars_garden
           </a>
         </div>
+      </div>
 
-        {/* Carousel Container */}
-        <div className="relative h-[900px] w-full overflow-hidden">
-          {/* Single Large Rope SVG */}
-          <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
-            {/* 
-              Curve matching our math:
-              Start: (-600, 0)
-              Control: (0, 80) -> Quadratic bezier approximation for parabola
-              End: (600, 0)
-            */}
-            <path
-              d="M -100,0 Q 50%,80 110%,0"
-              fill="none"
-              stroke="#A0522D"
-              strokeWidth="6"
-              vectorEffect="non-scaling-stroke"
-            />
-          </svg>
+      {/* Carousel Container */}
+      <div className="relative h-[900px] w-full overflow-hidden">
+        {/* Single Large Rope SVG */}
+        <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
+          {/* 
+            Curve matching our math:
+            Start: (-600, 0)
+            Control: (0, 80) -> Quadratic bezier approximation for parabola
+            End: (600, 0)
+          */}
+          <path
+            d="M -100,30 Q 50%,110 110%,30"
+            fill="none"
+            stroke="#A0522D"
+            strokeWidth="6"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
 
-          {/* Cards */}
-          <div className="relative w-full h-full">
-            {INSTAGRAM_POSTS.map((post, index) => (
-              <a
-                key={post.id}
-                href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-white p-3 pb-6 rounded-sm shadow-lg hover:shadow-2xl"
-                style={getCardStyle(index)}
-              >
-                {/* Clips */}
-                <div className="absolute -top-6 left-[20%] w-6 h-14 bg-ws-wood border border-ws-black/20 rounded-sm z-30 shadow-sm"></div>
-                <div className="absolute -top-6 right-[20%] w-6 h-14 bg-ws-wood border border-ws-black/20 rounded-sm z-30 shadow-sm"></div>
+        {/* Cards */}
+        <div className="relative w-full h-full">
+          {INSTAGRAM_POSTS.map((post, index) => (
+            <a
+              key={post.id}
+              href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block bg-white p-3 pb-6 rounded-sm shadow-lg hover:shadow-2xl"
+              style={getCardStyle(index)}
+            >
+              {/* Clips */}
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-6 h-14 bg-ws-wood border border-ws-black/20 rounded-sm z-30 shadow-sm"></div>
 
-                <div className="relative aspect-square overflow-hidden bg-gray-100">
-                  <Image
-                    src={post.imageUrl}
-                    alt={post.caption}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <span className="text-white font-bold">View on Instagram</span>
-                  </div>
+              <div className="relative aspect-square overflow-hidden bg-gray-100">
+                <Image
+                  src={post.imageUrl}
+                  alt={post.caption}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <span className="text-white font-bold">View on Instagram</span>
                 </div>
-                <div className="p-4">
-                  <p className="text-sm text-ws-black/50 mb-2 font-bold">{post.date}</p>
-                  <p className="text-base text-ws-black/80 line-clamp-2">{post.caption}</p>
-                </div>
-              </a>
-            ))}
-          </div>
+              </div>
+              <div className="p-4">
+                <p className="text-sm text-ws-black/50 mb-2 font-bold">{post.date}</p>
+                <p className="text-base text-ws-black/80 line-clamp-2">{post.caption}</p>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </section>
