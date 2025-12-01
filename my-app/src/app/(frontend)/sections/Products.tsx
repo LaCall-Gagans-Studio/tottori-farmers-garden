@@ -96,7 +96,7 @@ export default function Products() {
     selectedCategory === 'All' ? PRODUCTS : PRODUCTS.filter((p) => p.category === selectedCategory)
 
   return (
-    <section className="py-24 px-6 bg-ws-background text-ws-black font-zenKakuGothicNew">
+    <section className="py-24 px-6 text-ws-black font-zenKakuGothicNew">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6">

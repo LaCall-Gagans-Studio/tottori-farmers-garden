@@ -53,15 +53,15 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
 export default function News() {
   const [offset, setOffset] = useState(0)
   const [windowWidth, setWindowWidth] = useState(1200) // Default to desktop
-  const itemWidthRef = useRef(600)
+  const itemWidthRef = useRef(260)
 
   // Handle resize
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth)
       const isMobile = window.innerWidth < 768
-      const cardWidth = isMobile ? 300 : 450
-      const gap = isMobile ? 20 : 150
+      const cardWidth = isMobile ? 180 : 220
+      const gap = isMobile ? 15 : 40
       itemWidthRef.current = cardWidth + gap
     }
 
@@ -134,8 +134,8 @@ export default function News() {
   // Helper to calculate card style based on position
   const getCardStyle = (index: number) => {
     const isMobile = windowWidth < 768
-    const cardWidth = isMobile ? 300 : 450
-    const gap = isMobile ? 20 : 150
+    const cardWidth = isMobile ? 180 : 220
+    const gap = isMobile ? 15 : 40
     const itemWidth = cardWidth + gap
     const totalWidth = itemWidth * INSTAGRAM_POSTS.length
 
@@ -183,17 +183,11 @@ export default function News() {
     const rotation = Math.atan(-2 * k * relativeX) * (180 / Math.PI)
 
     // Adjust Y to align clips with rope
-    // ropeY is the Y position of the rope itself.
-    // We want the CLIPS (top of card) to be at ropeY.
-    // Card is centered by translate.
-    // If we translate by ropeY, the CENTER of the card is at ropeY.
-    // We want the TOP of the card to be at ropeY.
-    // Card height is roughly 600px (width 450 + padding + image + text).
-    // Half height is ~300.
-    // We want top of card at ropeY.
-    // So center should be at ropeY + 300.
-    const cardHalfHeight = 280 // Approximate for 450px width card
-    const finalY = ropeY + cardHalfHeight - 20 // -20 fine tuning for clip position
+    // We want the top of the card (where clips are) to be near the ropeY.
+    // Clips are at -top-6 (-24px).
+    // So if card top is at ropeY + 20, clips are at ropeY - 4.
+    // This looks about right for "hanging".
+    const finalY = ropeY - 60
 
     // Opacity/Visibility
     // If x is way off screen, hide it
@@ -212,7 +206,7 @@ export default function News() {
   }
 
   return (
-    <section className="py-10 px-6 bg-ws-background font-zenKakuGothicNew overflow-hidden">
+    <section className="py-10 px-6 font-zenKakuGothicNew overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex justify-center mb-6">
