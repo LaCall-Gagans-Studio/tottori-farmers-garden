@@ -16,7 +16,12 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-        <div className="relative w-80 h-40 md:w-96 md:h-48 mb-6">
+        <div
+          className="relative w-80 h-40 md:w-96 md:h-48 mb-6"
+          style={{
+            animation: 'slideInFromRight 1.2s ease-out',
+          }}
+        >
           <Image
             src="/images/splash-logo.png"
             alt="鳥取ファーマーズガーデン"
@@ -25,7 +30,12 @@ export default function Hero() {
             priority
           />
         </div>
-        <p className="text-xl md:text-2xl font-medium tracking-wider font-zenKakuGothicNew">
+        <p
+          className="text-xl md:text-2xl font-medium tracking-wider font-zenKakuGothicNew"
+          style={{
+            animation: 'slideInFromRight 1.2s ease-out 0.3s both',
+          }}
+        >
           自然の恵みを、そのまま食卓へ
         </p>
       </div>

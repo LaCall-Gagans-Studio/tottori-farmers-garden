@@ -20,7 +20,7 @@ interface Product {
 const PRODUCTS: Product[] = [
   {
     id: '1',
-    title: '特選黒毛和牛サーロイン',
+    title: '牛100%ハンバーグ',
     price: 12000,
     origin: '鳥取県',
     description:
@@ -31,7 +31,7 @@ const PRODUCTS: Product[] = [
   },
   {
     id: '2',
-    title: '大山バター',
+    title: '焼きしゃぶ丼',
     price: 850,
     origin: '鳥取県大山町',
     description:

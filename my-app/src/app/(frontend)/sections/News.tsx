@@ -51,27 +51,12 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
 ]
 
 export default function News() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  // Auto-slide logic
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % INSTAGRAM_POSTS.length)
-    }, 4000) // Slide every 4 seconds
-
-    return () => clearInterval(interval)
-  }, [])
-
-  // Calculate visible posts (circular)
-  const visiblePosts = [
-    INSTAGRAM_POSTS[currentIndex],
-    INSTAGRAM_POSTS[(currentIndex + 1) % INSTAGRAM_POSTS.length],
-    INSTAGRAM_POSTS[(currentIndex + 2) % INSTAGRAM_POSTS.length],
-  ]
+  // Duplicate posts to ensure smooth infinite scrolling
+  const displayPosts = [...INSTAGRAM_POSTS, ...INSTAGRAM_POSTS, ...INSTAGRAM_POSTS]
 
   return (
-    <section className="py-24 px-6 bg-ws-background font-zenKakuGothicNew">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 px-6 bg-ws-background font-zenKakuGothicNew overflow-hidden">
+      <div className="max-w-full mx-auto">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-12 text-ws-red font-script">News</h2>
         </div>
@@ -101,51 +86,61 @@ export default function News() {
           </a>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative overflow-hidden">
+        {/* Marquee Container */}
+        <div className="relative w-full">
           <div
-            key={currentIndex}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+            className="flex gap-8 w-max animate-infinite-scroll hover:[animation-play-state:paused]"
             style={{
-              animation: 'slideInFromRight 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              animation: 'ticker 40s linear infinite',
             }}
           >
-            {visiblePosts.map((post, index) => (
-              <a
-                key={`${post.id}-${index}`}
-                href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-              >
-                <div className="relative aspect-square overflow-hidden">
-                  <Image
-                    src={post.imageUrl}
-                    alt={post.caption}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+            {displayPosts.map((post, index) => (
+              <div key={`${post.id}-${index}`} className="relative pt-12 w-[300px] flex-shrink-0">
+                {/* Rope Segment (Connects to neighbors) */}
+                <svg
+                  className="absolute top-2 -left-[50%] w-[200%] h-24 z-10 pointer-events-none"
+                  preserveAspectRatio="none"
+                >
+                  {/* A curve that goes through the clips */}
+                  <path
+                    d="M0,15 Q150,45 300,15"
+                    fill="none"
+                    stroke="#A0522D"
+                    strokeWidth="3"
+                    vectorEffect="non-scaling-stroke"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <span className="text-white font-bold">View on Instagram</span>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <p className="text-xs text-ws-black/50 mb-2 font-bold">{post.date}</p>
-                  <p className="text-sm text-ws-black/80 line-clamp-2">{post.caption}</p>
-                </div>
-              </a>
-            ))}
-          </div>
+                </svg>
 
-          {/* Indicators (Optional, to show activity) */}
-          <div className="flex justify-center gap-2 mt-8">
-            {INSTAGRAM_POSTS.map((_, idx) => (
-              <div
-                key={idx}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? 'w-8 bg-ws-primary' : 'w-2 bg-ws-gray'
-                }`}
-              ></div>
+                <a
+                  href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block bg-white p-2 pb-4 rounded-sm shadow-lg hover:shadow-xl transition-all duration-300 relative transform hover:-translate-y-2 hover:rotate-1"
+                  style={{
+                    transform: `rotate(${index % 2 === 0 ? -1 : 1}deg)`,
+                  }}
+                >
+                  {/* Clips */}
+                  <div className="absolute -top-3 left-[20%] w-3 h-8 bg-ws-wood border border-ws-black/20 rounded-sm z-30 shadow-sm"></div>
+                  <div className="absolute -top-3 right-[20%] w-3 h-8 bg-ws-wood border border-ws-black/20 rounded-sm z-30 shadow-sm"></div>
+
+                  <div className="relative aspect-square overflow-hidden bg-gray-100">
+                    <Image
+                      src={post.imageUrl}
+                      alt={post.caption}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <span className="text-white font-bold">View on Instagram</span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <p className="text-xs text-ws-black/50 mb-2 font-bold">{post.date}</p>
+                    <p className="text-sm text-ws-black/80 line-clamp-2">{post.caption}</p>
+                  </div>
+                </a>
+              </div>
             ))}
           </div>
         </div>
