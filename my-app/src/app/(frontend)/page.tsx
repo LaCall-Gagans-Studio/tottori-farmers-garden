@@ -4,13 +4,13 @@ import Products from './sections/Products'
 import About from './sections/About'
 import Contact from './sections/Contact'
 import BackToTop from '../components/BackToTop'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 export default function Page() {
   return (
     <main className="relative min-h-screen">
       {/* Global Background Image */}
-      <div className="fixed inset-0 -z-10">
+      {/* <div className="fixed inset-0 -z-10 opacity-50">
         <Image
           src="/background-image.jpg"
           alt="Background"
@@ -18,7 +18,7 @@ export default function Page() {
           className="object-cover"
           priority
         />
-      </div>
+      </div> */}
 
       <section id="home">
         <Hero />

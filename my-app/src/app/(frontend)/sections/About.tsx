@@ -11,9 +11,17 @@ export default function About() {
           <span className="text-ws-primary font-bold tracking-widest text-sm uppercase mb-4 block">
             About Us
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-ws-black font-script mb-6">
-            私たちが大切にしていること
-          </h2>
+          <div className="flex justify-center mb-6">
+            <div className="relative w-96 h-40">
+              <Image
+                src="/images/about_title.png"
+                alt="私たちが大切にしていること"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
           <p className="text-ws-black/70 text-lg font-zenKakuGothicNew max-w-2xl mx-auto leading-relaxed">
             鳥取の豊かな自然と、そこに生きる人々の想いをつなぐ。
             <br />
