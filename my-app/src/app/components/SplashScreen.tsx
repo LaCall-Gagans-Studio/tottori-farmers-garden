@@ -45,7 +45,7 @@ export default function SplashScreen() {
         }`}
       >
         <Image
-          src="/images/splash-logo.png"
+          src="/logo.jpg"
           alt="Tottori Farmers Garden"
           fill
           className="object-contain"

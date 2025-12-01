@@ -15,12 +15,20 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      <h1 className="text-5xl font-bold mb-4 font-zenKakuGothicAntique drop-shadow-lg">
-        鳥取ファーマーズガーデン
-      </h1>
-      <p className="text-xl font-zenKakuGothicNew drop-shadow-md">
-        新鮮な野菜と楽しい体験をお届けします
-      </p>
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+        <div className="relative w-80 h-40 md:w-96 md:h-48 mb-6">
+          <Image
+            src="/images/hero-logo.png"
+            alt="鳥取ファーマーズガーデン"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+        <p className="text-xl md:text-2xl font-medium tracking-wider font-zenKakuGothicNew">
+          自然の恵みを、そのまま食卓へ
+        </p>
+      </div>
     </div>
   )
 }
