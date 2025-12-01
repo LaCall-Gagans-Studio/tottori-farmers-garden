@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
         <div className="relative w-80 h-40 md:w-96 md:h-48 mb-6">
           <Image
-            src="/images/hero-logo.png"
+            src="/images/splash-logo.png"
             alt="鳥取ファーマーズガーデン"
             fill
             className="object-contain"

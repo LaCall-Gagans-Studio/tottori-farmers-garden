@@ -103,22 +103,20 @@ export default function News() {
 
         {/* Carousel Container */}
         <div className="relative overflow-hidden">
-          {/* 
-            Note: For a true smooth infinite slide with CSS transitions on a list, 
-            we often need a more complex setup (cloning items). 
-            Here, we simply render the 3 active items. 
-            To make it feel like "sliding", we can add a simple fade or slide animation keyframe,
-            but replacing the content is the simplest robust React approach without external libraries.
-            For a "slide" effect, we can animate the container.
-          */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div
+            key={currentIndex}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+            style={{
+              animation: 'slideInFromRight 0.8s ease-out',
+            }}
+          >
             {visiblePosts.map((post, index) => (
               <a
-                key={`${post.id}-${index}`} // Unique key for React when wrapping
+                key={`${post.id}-${index}`}
                 href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-right-4"
+                className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
               >
                 <div className="relative aspect-square overflow-hidden">
                   <Image

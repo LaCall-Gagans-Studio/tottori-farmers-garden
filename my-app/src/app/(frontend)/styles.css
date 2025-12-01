@@ -55,6 +55,16 @@
       height: 0;
     }
   }
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 }
 
 /* 4. 基本スタイルのリセットなど */
