@@ -8,7 +8,7 @@ export default function Contact() {
           <div className="relative w-96 h-40">
             <Image
               src="/images/contact_title.png"
-              alt="Contact Us"
+              alt="お問い合わせ"
               fill
               className="object-contain"
               priority

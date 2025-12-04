@@ -15,7 +15,7 @@ export default function About() {
             <div className="relative w-96 h-40">
               <Image
                 src="/images/about_title.png"
-                alt="私たちが大切にしていること"
+                alt="私たちについて"
                 fill
                 className="object-contain"
                 priority
@@ -42,9 +42,16 @@ export default function About() {
               <div className="inline-block px-6 py-2 bg-ws-black text-white rounded-full text-sm font-bold mb-8 tracking-wider">
                 FARMERS GARDEN
               </div>
-              <h3 className="text-3xl md:text-4xl font-bold mb-10 font-zenKakuGothicAntique leading-tight">
-                鳥取ファーマーズガーデン
-              </h3>
+              <div className="flex justify-center mb-10">
+                <div className="relative w-80 h-24">
+                  <Image
+                    src="/logo.jpg"
+                    alt="鳥取ファーマーズガーデン"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
 
               <div className="space-y-8 text-lg text-ws-black/80 font-zenKakuGothicNew leading-loose">
                 <p>

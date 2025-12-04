@@ -100,18 +100,18 @@ export default function Products() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-center mb-12">
-            <div className="relative w-48 h-16">
+          <div className="flex justify-center mb-8">
+            <div className="relative w-[400px] h-70">
               <Image
                 src="/images/products_title.png"
-                alt="Products"
+                alt="商品情報"
                 fill
                 className="object-contain"
                 priority
               />
             </div>
           </div>
-          <p className="text-ws-black/70 text-lg">
+          <p className="text-ws-black/70 text-lg text-center mb-8">
             鳥取の自然が育んだ、至高の味わいをお届けします。
           </p>
         </div>
@@ -124,8 +124,8 @@ export default function Products() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-6 py-2 rounded-full border transition-all duration-300 ${
                 selectedCategory === cat
-                  ? 'bg-ws-primary text-white border-ws-primary shadow-lg scale-105'
-                  : 'bg-white text-ws-black border-ws-gray hover:border-ws-primary hover:text-ws-primary'
+                  ? 'bg-red-600 text-white border-red-600 shadow-lg scale-105'
+                  : 'bg-white text-ws-black border-ws-gray hover:border-red-600 hover:text-red-600'
               }`}
             >
               {cat === 'All'

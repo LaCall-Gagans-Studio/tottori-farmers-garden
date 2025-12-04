@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Footer() {
   return (
     <footer className="bg-red-600 text-white py-16 font-zenKakuGothicNew">
@@ -6,9 +8,14 @@ export default function Footer() {
           {/* Left Side: Text Area (Company, Address, Phone) */}
           <div className="w-full md:w-1/2 flex flex-col justify-between h-80">
             <div>
-              <h2 className="text-3xl font-bold mb-2 font-zenKakuGothicAntique">
-                鳥取ファーマーズガーデン
-              </h2>
+              <div className="relative w-96 h-24 mb-2">
+                <Image
+                  src="/images/header-logo.png"
+                  alt="鳥取ファーマーズガーデン"
+                  fill
+                  className="object-contain object-left"
+                />
+              </div>
               <p className="text-white/80">地元の新鮮な食材と、心温まる体験を。</p>
             </div>
 

@@ -244,23 +244,23 @@ export default function News() {
   return (
     <section className="py-10 font-zenKakuGothicNew overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex justify-center mb-6">
-          <div className="relative w-96 h-40">
+        <div className="flex justify-center mb-2 mt-80">
+          <div className="relative w-[900px] h-70">
             <Image
               src="/images/news_title.png"
-              alt="News"
+              alt="最新情報"
               fill
               className="object-contain"
               priority
             />
           </div>
         </div>
-        <div className="text-center mb-4">
+        <div className="text-center mb-6 -mt-24">
           <a
             href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-ws-primary hover:underline inline-flex items-center gap-2 font-bold"
+            className="text-red-600 hover:underline inline-flex items-center gap-2 font-bold"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
