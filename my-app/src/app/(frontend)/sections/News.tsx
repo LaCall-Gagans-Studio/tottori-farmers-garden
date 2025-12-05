@@ -242,7 +242,7 @@ export default function News() {
   }
 
   return (
-    <section className="py-10 font-zenKakuGothicNew overflow-hidden">
+    <section className="pt-10 pb-0 -mt-20 font-zenKakuGothicNew overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex justify-center mb-2 mt-80">
           <div className="relative w-[900px] h-70">
@@ -283,7 +283,7 @@ export default function News() {
       </div>
 
       {/* Carousel Container */}
-      <div className="relative h-[900px] w-full overflow-hidden">
+      <div className="relative h-[500px] w-full overflow-hidden">
         {/* Single Large Rope SVG */}
         <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
           {/* 

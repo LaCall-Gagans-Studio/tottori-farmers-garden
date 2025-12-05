@@ -96,11 +96,11 @@ export default function Products() {
     selectedCategory === 'All' ? PRODUCTS : PRODUCTS.filter((p) => p.category === selectedCategory)
 
   return (
-    <section className="py-24 px-6 text-ws-black font-zenKakuGothicNew">
+    <section className="py-12 -mt-20 px-6 text-ws-black font-zenKakuGothicNew">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-2">
             <div className="relative w-[400px] h-70">
               <Image
                 src="/images/products_title.png"
@@ -111,13 +111,10 @@ export default function Products() {
               />
             </div>
           </div>
-          <p className="text-ws-black/70 text-lg text-center mb-8">
-            鳥取の自然が育んだ、至高の味わいをお届けします。
-          </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-8 -mt-16">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
@@ -162,15 +159,12 @@ export default function Products() {
               </div>
               <div className="p-6">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold text-ws-black group-hover:text-ws-primary transition-colors">
+                  <h3 className="text-xl font-bold text-ws-black group-hover:text-red-600 transition-colors">
                     {product.title}
                   </h3>
-                  <span className="text-lg font-bold text-ws-primary">
-                    ¥{product.price.toLocaleString()}
-                  </span>
                 </div>
                 <p className="text-ws-black/60 text-sm line-clamp-2">{product.description}</p>
-                <div className="mt-4 flex items-center text-ws-primary font-bold text-sm group-hover:translate-x-2 transition-transform">
+                <div className="mt-4 flex items-center text-red-600 font-bold text-sm group-hover:translate-x-2 transition-transform">
                   詳細を見る <span className="ml-1">→</span>
                 </div>
               </div>
@@ -238,15 +232,7 @@ export default function Products() {
                   <p className="text-ws-black/80 leading-relaxed mb-8">
                     {selectedProduct.description}
                   </p>
-                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-ws-gray">
-                    <span className="text-3xl font-bold text-ws-primary">
-                      ¥{selectedProduct.price.toLocaleString()}
-                      <span className="text-sm text-ws-black/50 font-normal ml-1">(税込)</span>
-                    </span>
-                    <button className="bg-ws-black text-white px-8 py-3 rounded-full font-bold hover:bg-ws-primary hover:text-white transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                      カートに入れる
-                    </button>
-                  </div>
+                  {/* Price and Cart button removed */}
                 </div>
               </div>
             </div>

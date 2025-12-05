@@ -8,9 +8,6 @@ export default function About() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-24">
-          <span className="text-ws-primary font-bold tracking-widest text-sm uppercase mb-4 block">
-            About Us
-          </span>
           <div className="flex justify-center mb-6">
             <div className="relative w-96 h-40">
               <Image
@@ -22,11 +19,11 @@ export default function About() {
               />
             </div>
           </div>
-          <p className="text-ws-black/70 text-lg font-zenKakuGothicNew max-w-2xl mx-auto leading-relaxed">
+          {/* <p className="text-ws-black/70 text-lg font-zenKakuGothicNew max-w-2xl mx-auto leading-relaxed">
             鳥取の豊かな自然と、そこに生きる人々の想いをつなぐ。
             <br />
             食卓に笑顔と彩りを届けるために。
-          </p>
+          </p> */}
         </div>
 
         {/* Company Section (Now Top) */}
@@ -39,9 +36,9 @@ export default function About() {
             <div className="absolute top-0 left-0 w-2 h-full bg-ws-primary"></div>
 
             <div className="relative z-10 max-w-4xl mx-auto text-center">
-              <div className="inline-block px-6 py-2 bg-ws-black text-white rounded-full text-sm font-bold mb-8 tracking-wider">
+              {/* <div className="inline-block px-6 py-2 bg-ws-black text-white rounded-full text-sm font-bold mb-8 tracking-wider">
                 FARMERS GARDEN
-              </div>
+              </div> */}
               <div className="flex justify-center mb-10">
                 <div className="relative w-80 h-24">
                   <Image
