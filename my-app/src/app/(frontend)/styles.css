@@ -27,6 +27,11 @@
   --color-ws-gray: #e1e6d8; /* JSから移植 */
   --color-ws-wood: #e6d5c1; /* Hard Maple Color */
 
+  /* Override Red Colors to #EA5A49 (234, 90, 73) */
+  --color-red-400: #ea5a49;
+  --color-red-500: #ea5a49;
+  --color-red-600: #ea5a49;
+
   /* Background Image (Placeholder for Wood Texture) */
   --bg-wood-pattern: url('/images/wood-texture.jpg');
 
