@@ -21,11 +21,11 @@ export default function Header() {
   }, [])
 
   const menuItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'News', href: '#news' },
-    { label: 'Products', href: '#products' },
-    { label: 'About us', href: '#about' },
-    { label: 'Contact us', href: '#contact' },
+    { label: 'ホーム', href: '#home', image: '/images/home_nav.png' },
+    { label: '最新情報', href: '#news', image: '/images/news_nav.png' },
+    { label: '商品情報', href: '#products', image: '/images/products_nav.png' },
+    { label: '私たちについて', href: '#about', image: '/images/about_nav.png' },
+    { label: 'お問合せ', href: '#contact', image: '/images/contact_nav.png' },
   ]
 
   return (
@@ -72,15 +72,20 @@ export default function Header() {
       {open && (
         <nav className="fixed inset-0 bg-red-600 z-[60] flex flex-col items-center justify-center animate-in fade-in duration-300">
           {/* メニューリスト */}
-          <ul className="space-y-8 text-center">
+          <ul className="space-y-8 text-center flex flex-col items-center">
             {menuItems.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="text-3xl md:text-4xl font-bold font-zenKakuGothicAntique hover:opacity-80 transition-opacity text-white"
+                  className="block relative w-96 h-32 hover:opacity-80 transition-opacity overflow-hidden"
                 >
-                  {item.label}
+                  <Image
+                    src={item.image}
+                    alt={item.label}
+                    fill
+                    className="object-contain scale-[1.5]"
+                  />
                 </a>
               </li>
             ))}
