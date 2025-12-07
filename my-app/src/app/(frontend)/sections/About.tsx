@@ -32,71 +32,72 @@ export default function About() {
           <div className="absolute -top-20 -left-20 w-96 h-96 bg-ws-primary/5 rounded-full blur-3xl -z-10"></div>
           <div className="absolute bottom-0 right-0 w-80 h-80 bg-ws-secondary/5 rounded-full blur-3xl -z-10"></div>
 
-          <div className="bg-white/80 backdrop-blur-sm border border-ws-black/5 rounded-3xl p-8 md:p-16 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-2 h-full bg-ws-primary"></div>
+          <div className="bg-[#fdfbf7] p-8 md:p-12 shadow-xl relative max-w-5xl mx-auto transform rotate-1">
+            {/* Top Tape */}
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-white/50 backdrop-blur-sm border border-white/20 shadow-sm rotate-1"></div>
 
-            <div className="relative z-10 max-w-4xl mx-auto text-center">
-              {/* <div className="inline-block px-6 py-2 bg-ws-black text-white rounded-full text-sm font-bold mb-8 tracking-wider">
-                FARMERS GARDEN
-              </div> */}
-              <div className="flex justify-center mb-10">
-                <div className="relative w-80 h-24">
-                  <Image
-                    src="/logo.jpg"
-                    alt="鳥取ファーマーズガーデン"
-                    fill
-                    className="object-contain"
-                  />
+            <div className="flex flex-col md:flex-row gap-12 items-start">
+              {/* Left: Text on ruled lines */}
+              <div className="w-full md:w-3/5 relative pt-4">
+                {/* Ruled lines background */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage: 'linear-gradient(transparent 31px, #e5e7eb 31px)',
+                    backgroundSize: '100% 32px',
+                    top: '4px', // Adjust start position
+                  }}
+                ></div>
+
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className="mb-8 flex justify-start">
+                    <div className="relative w-64 h-16">
+                      <Image
+                        src="/logo.jpg"
+                        alt="鳥取ファーマーズガーデン"
+                        fill
+                        className="object-contain object-left"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="text-lg text-ws-black/80 font-zenKakuGothicNew leading-[32px] text-left">
+                    <p>
+                      私たちは、
+                      <span className="font-bold text-ws-black px-1">
+                        「鳥取県産のものにこだわり」
+                      </span>
+                      、
+                      <br />
+                      地域の生産者と消費者を結ぶ架け橋となります。
+                    </p>
+                    <p className="mt-8">
+                      <span className="font-bold text-ws-black px-1">「地産地消を手軽に」</span>
+                      をモットーに、
+                      <br />
+                      毎日の食卓がもっと楽しく、もっと豊かになるような
+                      <br />
+                      商品と体験を提供し続けます。
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="space-y-8 text-lg text-ws-black/80 font-zenKakuGothicNew leading-loose">
-                <p>
-                  私たちは、
-                  <span className="font-bold text-ws-black border-b-4 border-ws-primary/30 px-1 mx-1">
-                    「鳥取県産のものにこだわり」
-                  </span>
-                  、
-                  <br className="hidden md:block" />
-                  地域の生産者と消費者を結ぶ架け橋となります。
-                </p>
-                <p>
-                  <span className="font-bold text-ws-black border-b-4 border-ws-primary/30 px-1 mx-1">
-                    「地産地消を手軽に」
-                  </span>
-                  をモットーに、
-                  <br className="hidden md:block" />
-                  毎日の食卓がもっと楽しく、もっと豊かになるような
-                  <br className="hidden md:block" />
-                  商品と体験を提供し続けます。
-                </p>
-              </div>
-
-              <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                {[
-                  {
-                    title: 'Fresh',
-                    desc: '朝採れの新鮮な野菜や果物を、その日のうちに。',
-                    icon: '🌿',
-                  },
-                  { title: 'Local', desc: '鳥取の土地で育った、安心・安全な食材。', icon: '🗻' },
-                  { title: 'Connect', desc: '生産者の顔が見える、温かいつながり。', icon: '🤝' },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="group bg-ws-background p-8 rounded-2xl border border-ws-black/5 hover:border-ws-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                  >
-                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                      {item.icon}
-                    </div>
-                    <h4 className="font-bold text-xl mb-3 text-ws-primary font-zenKakuGothicAntique">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-ws-black/70 leading-relaxed font-zenKakuGothicNew">
-                      {item.desc}
-                    </p>
+              {/* Right: Photo style image */}
+              <div className="w-full md:w-2/5 flex justify-center md:justify-end pt-8">
+                <div className="relative w-64 h-64 bg-white p-3 shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-500 border border-gray-100">
+                  <div className="relative w-full h-full overflow-hidden bg-gray-100">
+                    <Image
+                      src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=800"
+                      alt="Farm landscape"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                ))}
+                  {/* Pin or Tape on photo */}
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-400 shadow-md border border-red-500/20"></div>
+                </div>
               </div>
             </div>
           </div>
