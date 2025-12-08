@@ -30,8 +30,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-4 left-[2%] w-[96%] px-6 py-2 flex justify-between items-center z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-red-600/90 shadow-lg' : 'bg-transparent'
+      className={`fixed top-4 left-4 right-4 p-4 flex justify-between items-center z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-red-600/90 shadow-lg rounded-2xl' : 'bg-transparent'
       }`}
     >
       {/* 左：大きめロゴ */}
