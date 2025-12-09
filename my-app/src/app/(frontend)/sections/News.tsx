@@ -85,9 +85,13 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
   },
 ]
 
+// Background image opacity (0-1)
+const BACKGROUND_OPACITY = 0.3
+
 export default function News() {
   const [offset, setOffset] = useState(0)
   const [windowWidth, setWindowWidth] = useState(1200) // Default to desktop
+  const currentIndexRef = useRef(0)
   const itemWidthRef = useRef(160)
 
   // Handle resize
@@ -95,8 +99,8 @@ export default function News() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth)
       const isMobile = window.innerWidth < 768
-      const cardWidth = isMobile ? 140 : 190
-      const gap = isMobile ? 10 : 20
+      const cardWidth = isMobile ? 240 : 190
+      const gap = isMobile ? 80 : 20
       itemWidthRef.current = cardWidth + gap
     }
 
@@ -113,42 +117,46 @@ export default function News() {
     let isPausing = true
     let pauseStartTime = performance.now()
 
-    // Calculate initial offset to center the first card
-    // We want relativeX = 0 for index 0.
-    // relativeX = x - containerCenter + itemWidth/2
-    // x = -offset
-    // 0 = -offset - containerCenter + itemWidth/2
-    // offset = itemWidth/2 - containerCenter
-    // Note: This initial calculation is approximate because windowWidth might update.
-    // But the loop will take over.
-    // Let's start with a "centered" state for whatever the defaults are.
-    let startOffset = 300 - 600 // -300 for default desktop
-    let targetOffset = startOffset
+    const getTargetOffset = (index: number) => {
+      const isMobile = windowWidth < 768
+      const cardWidth = isMobile ? 240 : 190
+      const gap = isMobile ? 80 : 20
+      const itemWidth = cardWidth + gap
+      // We want card at 'index' to be centered
+      // x = index * itemWidth - offset
+      // Center of card: x + cardWidth/2
+      // We want: x + cardWidth/2 = windowWidth/2
+      // index * itemWidth - offset + cardWidth/2 = windowWidth/2
+      // offset = index * itemWidth + cardWidth/2 - windowWidth/2
+      return index * itemWidth + cardWidth / 2 - windowWidth / 2
+    }
 
-    // Update startOffset once we have real dimensions?
-    // Actually, let's just let the loop run.
-    // If we want to force center on load, we might need to reset offset when windowWidth is first set.
-    // But let's keep it simple.
+    let startOffset = getTargetOffset(0)
+    let targetOffset = startOffset
+    setOffset(startOffset)
 
     let startTime = 0
     const pauseDuration = 3000
-    const moveDuration = 1000
+    const moveDuration = 1200 // Slightly longer for smoother feel
 
     const animate = (time: number) => {
-      const itemWidth = itemWidthRef.current
-
       if (isPausing) {
         if (time - pauseStartTime >= pauseDuration) {
           isPausing = false
           startTime = time
           startOffset = targetOffset
-          targetOffset = startOffset + itemWidth
+          const nextIndex = (currentIndexRef.current + 1) % INSTAGRAM_POSTS.length
+          currentIndexRef.current = nextIndex
+          targetOffset = getTargetOffset(nextIndex)
         }
       } else {
         const elapsed = time - startTime
         const progress = Math.min(elapsed / moveDuration, 1)
-        // Ease out cubic
-        const ease = 1 - Math.pow(1 - progress, 3)
+        // Ease in-out cubic for smoother motion
+        const ease =
+          progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2
 
         const current = startOffset + (targetOffset - startOffset) * ease
         setOffset(current)
@@ -164,13 +172,13 @@ export default function News() {
 
     animationFrameId = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(animationFrameId)
-  }, [])
+  }, [windowWidth])
 
   // Helper to calculate card style based on position
   const getCardStyle = (index: number) => {
     const isMobile = windowWidth < 768
-    const cardWidth = isMobile ? 140 : 190
-    const gap = isMobile ? 10 : 20
+    const cardWidth = isMobile ? 240 : 190
+    const gap = isMobile ? 80 : 20
     const itemWidth = cardWidth + gap
     const totalWidth = itemWidth * INSTAGRAM_POSTS.length
 
@@ -205,8 +213,9 @@ export default function News() {
     // If we keep same k, the curve might look flat because x range is smaller.
     // Let's keep k constant for now or adjust based on width.
     // A constant k means the "rope shape" is the same physical curve.
-    const k = 80 / (600 * 600)
-    const ropeY = 110 - k * relativeX * relativeX
+    const sag = isMobile ? 250 : 80
+    const k = sag / (600 * 600)
+    const ropeY = (isMobile ? 250 : 110) - k * relativeX * relativeX
 
     // Rotation: derivative of the curve
     // y' = -2 * k * x
@@ -216,20 +225,24 @@ export default function News() {
     // So `rotation = Math.atan(y')` should work directly.
 
     const rotation = Math.atan(-2 * k * relativeX) * (180 / Math.PI)
+    // Gradually reduce rotation near center for smooth transition
+    // Damping factor: 0 at center, 1 at 100px+ away
+    const dampingFactor = Math.min(Math.abs(relativeX) / 100, 1)
+    const finalRotation = rotation * dampingFactor
 
     // Adjust Y to align clips with rope
-    // We want the top of the card (where clips are) to be near the ropeY.
     // Clips are at -top-6 (-24px).
     // So if card top is at ropeY + 20, clips are at ropeY - 4.
     // This looks about right for "hanging".
-    const finalY = ropeY + 20
+    // Mobile: lifted higher, Desktop: original position
+    const finalY = isMobile ? ropeY - 120 : ropeY + 20
 
     // Opacity/Visibility
     // If x is way off screen, hide it
     const isVisible = x > -2000 && x < 4000
 
     return {
-      transform: `translate(${x}px, ${finalY}px) rotate(${rotation}deg)`,
+      transform: `translate(${x}px, ${finalY}px) rotate(${finalRotation}deg)`,
       width: `${cardWidth}px`,
       opacity: isVisible ? 1 : 0,
       zIndex: 10,
@@ -242,9 +255,22 @@ export default function News() {
   }
 
   return (
-    <section className="pt-10 pb-0 -mt-20 font-zenKakuGothicNew overflow-hidden">
+    <section
+      className="pt-10 pb-0 -mt-20 font-zenKakuGothicNew overflow-hidden relative"
+      style={{
+        backgroundImage: 'url(/background-image.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* Background opacity overlay */}
+      <div
+        className="absolute inset-0 bg-white pointer-events-none"
+        style={{ opacity: 1 - BACKGROUND_OPACITY }}
+      ></div>
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex justify-center mb-2 mt-80">
+        <div className="flex justify-center mb-2 mt-10 md:mt-20">
           <div className="relative w-[900px] h-70">
             <Image
               src="/images/news_title.png"
@@ -283,7 +309,7 @@ export default function News() {
       </div>
 
       {/* Carousel Container */}
-      <div className="relative h-[500px] w-full overflow-hidden">
+      <div className="relative h-[650px] md:h-[500px] w-full overflow-hidden">
         {/* Single Large Rope SVG */}
         <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
           {/* 
@@ -292,12 +318,23 @@ export default function News() {
             Control: (0, 80) -> Quadratic bezier approximation for parabola
             End: (600, 0)
           */}
+          {/* Mobile Rope (Deep curve) */}
+          <path
+            d="M -100,30 Q 50%,250 110%,30"
+            fill="none"
+            stroke="#A0522D"
+            strokeWidth="6"
+            vectorEffect="non-scaling-stroke"
+            className="md:hidden"
+          />
+          {/* Desktop Rope (Standard curve) */}
           <path
             d="M -100,30 Q 50%,110 110%,30"
             fill="none"
             stroke="#A0522D"
             strokeWidth="6"
             vectorEffect="non-scaling-stroke"
+            className="hidden md:block"
           />
         </svg>
 

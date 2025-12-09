@@ -39,7 +39,7 @@ export default function About() {
             <div className="flex justify-center md:hidden pt-8 mb-8">
               <div className="relative w-64 h-16">
                 <Image
-                  src="/logo.jpg"
+                  src="/images/splash-logo.png"
                   alt="鳥取ファーマーズガーデン"
                   fill
                   className="object-contain"
@@ -65,7 +65,7 @@ export default function About() {
                   <div className="mb-8 hidden md:flex justify-center">
                     <div className="relative w-64 h-16">
                       <Image
-                        src="/logo.jpg"
+                        src="/images/splash-logo.png"
                         alt="鳥取ファーマーズガーデン"
                         fill
                         className="object-contain"
