@@ -73,7 +73,7 @@ export default function About() {
                     </div>
                   </div>
 
-                  <div className="text-lg text-ws-black/80 font-zenKakuGothicNew leading-[32px] text-left">
+                  <div className="text-lg text-ws-black/80 font-mikachan leading-[32px] text-left">
                     <p>
                       私たちは、
                       <span className="font-bold text-ws-black px-1">
@@ -135,10 +135,10 @@ export default function About() {
               {/* Content */}
               <div className="relative z-10">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold font-zenKakuGothicAntique">河上 美穂</h3>
+                  <h3 className="text-3xl font-bold font-mikachan">河上 美穂</h3>
                 </div>
 
-                <div className="text-lg text-ws-black/80 font-zenKakuGothicNew leading-[32px] text-left">
+                <div className="text-lg text-ws-black/80 font-mikachan leading-[32px] text-left">
                   <p>20xx年より鳥取ファーマーズガーデンを開業。</p>
                   <p className="mt-8">
                     「食を通じて地域を元気にしたい」という想いから、

@@ -96,7 +96,7 @@ export default function Products() {
     selectedCategory === 'All' ? PRODUCTS : PRODUCTS.filter((p) => p.category === selectedCategory)
 
   return (
-    <section className="py-12 -mt-20 px-6 text-ws-black font-zenKakuGothicNew">
+    <section className="py-12 -mt-20 px-6 text-ws-black font-mikachan">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6">
@@ -222,9 +222,7 @@ export default function Products() {
                             ? '加工品'
                             : 'その他'}
                   </div>
-                  <h3 className="text-3xl font-bold mb-2 font-zenKakuGothicAntique">
-                    {selectedProduct.title}
-                  </h3>
+                  <h3 className="text-3xl font-bold mb-2 font-mikachan">{selectedProduct.title}</h3>
                   <p className="text-ws-black/50 mb-6 flex items-center gap-2">
                     <span className="inline-block w-4 h-4 rounded-full bg-ws-tertiary/50"></span>
                     産地: {selectedProduct.origin}

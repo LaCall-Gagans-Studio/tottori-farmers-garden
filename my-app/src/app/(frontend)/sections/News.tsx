@@ -9,6 +9,7 @@ interface InstagramPost {
   imageUrl: string
   date: string
   caption: string
+  url?: string // Optional: direct link to Instagram post
 }
 
 // --- Dummy Data ---
@@ -36,10 +37,10 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
   },
   {
     id: '4',
-    imageUrl:
-      'https://images.unsplash.com/photo-1595855709915-445676d2a29e?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/images/instagram-reel-4.jpg',
     date: '2025.11.15',
-    caption: '新作のジャムが完成！甘さ控えめでパンにぴったり🍞',
+    caption: '8月の営業日カレンダーを更新しました！',
+    url: 'https://www.instagram.com/reel/DM2tjIHhdjK/?igsh=MW0yYzZ1Y2RxcnY5bw==',
   },
   {
     id: '5',
@@ -256,7 +257,7 @@ export default function News() {
 
   return (
     <section
-      className="pt-10 pb-0 -mt-20 font-zenKakuGothicNew overflow-hidden relative"
+      className="pt-10 pb-0 -mt-20 font-mikachan overflow-hidden relative"
       style={{
         backgroundImage: 'url(/background-image.jpg)',
         backgroundSize: 'cover',
@@ -283,7 +284,7 @@ export default function News() {
         </div>
         <div className="text-center mb-6 -mt-24">
           <a
-            href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
+            href="https://www.instagram.com/farmars_garden/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-red-600 hover:underline inline-flex items-center gap-2 font-bold"
@@ -343,7 +344,10 @@ export default function News() {
           {INSTAGRAM_POSTS.map((post, index) => (
             <a
               key={post.id}
-              href="https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D"
+              href={
+                post.url ||
+                'https://www.instagram.com/farmars_garden/?igsh=MXB2NHp2cmppZXN1cA%3D%3D'
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="group block bg-white p-3 pb-6 rounded-sm shadow-lg hover:shadow-2xl"

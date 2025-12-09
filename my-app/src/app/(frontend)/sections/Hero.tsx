@@ -2,9 +2,9 @@ import Image from 'next/image'
 
 export default function Hero() {
   return (
-    <div className="relative h-screen flex flex-col justify-center items-center text-white overflow-hidden">
+    <div className="relative w-full h-screen flex flex-col justify-center items-center text-white overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 top-0 -z-10">
         <Image
           src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1920"
           alt="Hero Background"
@@ -31,7 +31,7 @@ export default function Hero() {
           />
         </div>
         <p
-          className="text-xl md:text-2xl font-medium tracking-wider font-zenKakuGothicNew"
+          className="text-xl md:text-2xl font-medium tracking-wider font-mikachan"
           style={{
             animation: 'slideInFromRight 1.2s. ease-out 0.3s both',
           }}

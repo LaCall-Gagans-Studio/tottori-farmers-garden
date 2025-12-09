@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="bg-red-600 text-white py-16 font-zenKakuGothicNew">
+    <footer className="bg-red-600 text-white py-16 font-mikachan">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
           {/* Left Side: Text Area (Company, Address, Phone) */}

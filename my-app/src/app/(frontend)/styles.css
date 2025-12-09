@@ -5,12 +5,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
+/* みかちゃんフォントの定義 */
+@font-face {
+  font-family: 'Mikachan';
+  src: url('/fonts/mikachan.ttc') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* 2. Tailwind 本体とプラグインの読み込み */
 @import 'tailwindcss';
 
 /* 3. テーマ設定 (以前の tailwind.config.js の内容をここに統合) */
 @theme {
   /* Fonts */
+  --font-mikachan: 'Mikachan', cursive;
   --font-kiwi: 'Kiwi Maru', serif;
   --font-kosugi: 'Kosugi', sans-serif;
   --font-zenKakuGothicNew: 'Zen Kaku Gothic New', sans-serif;
@@ -81,8 +91,8 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-kiwi);
-    font-weight: 500;
+    font-family: var(--font-mikachan);
+    font-weight: normal;
   }
 
   /* ダークモード/ライトモードのちらつき防止 */
@@ -92,8 +102,8 @@
   }
 
   body {
-    font-family: var(--font-kiwi);
-    font-weight: 300;
+    font-family: var(--font-mikachan);
+    font-weight: normal;
     background-color: var(--color-ws-wood);
     background-image: var(--bg-wood-pattern);
     background-repeat: repeat;
