@@ -313,7 +313,7 @@ export default function News() {
       </div>
 
       {/* Carousel Container */}
-      <div className="relative h-[360px] md:h-[500px] w-full overflow-hidden">
+      <div className="relative h-[360px] md:h-[500px] w-full overflow-visible">
         {/* Single Large Rope SVG */}
         <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
           {/* 
