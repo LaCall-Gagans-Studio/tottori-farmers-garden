@@ -1,6 +1,35 @@
+'use client'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 export default function Hero() {
+  const [blurAmount, setBlurAmount] = useState(0)
+  const [opacity, setOpacity] = useState(1)
+
+  useEffect(() => {
+    const mainElement = document.getElementById('main-scroll-container')
+    if (!mainElement) return
+
+    const handleScroll = () => {
+      const scrollY = mainElement.scrollTop
+      const windowHeight = window.innerHeight
+
+      // ぼかし: 画面の10%スクロールで最大15px（30%程度）
+      const newBlur = Math.min((scrollY / (windowHeight * 0.1)) * 15, 15)
+      setBlurAmount(newBlur)
+
+      // 透明度: 画面の20%スクロールで0.5まで下がる（少し暗くなる程度）
+      const newOpacity = Math.max(1 - scrollY / (windowHeight * 0.2), 0.5)
+      setOpacity(newOpacity)
+    }
+
+    mainElement.addEventListener('scroll', handleScroll)
+    // 初期状態でも実行
+    handleScroll()
+
+    return () => mainElement.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div
       className="relative w-full flex flex-col justify-center items-center text-white overflow-hidden"
@@ -9,72 +38,81 @@ export default function Hero() {
         height: 'calc(100vh + 120px)',
       }}
     >
-      {/* Background Image */}
-      <div className="absolute -inset-1 -z-10">
-        <Image
-          src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1920"
-          alt="Hero Background"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-          quality={90}
-        />
-        <div className="absolute inset-0 bg-black/60" />
-      </div>
-
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-        <div
-          className="relative w-80 h-40 md:w-96 md:h-48 mb-6"
-          style={{
-            animation: 'slideInFromRight 1.2s ease-out',
-          }}
-        >
+      {/* 全体にぼかしを適用するラッパー */}
+      <div
+        className="w-full h-full transition-all duration-75 ease-out will-change-[filter,opacity]"
+        style={{
+          filter: `blur(${blurAmount}px)`,
+          opacity: opacity,
+        }}
+      >
+        {/* Background Image */}
+        <div className="absolute -inset-1 -z-10">
           <Image
-            src="/images/splash-logo.png"
-            alt="鳥取ファーマーズガーデン"
+            src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1920"
+            alt="Hero Background"
             fill
-            className="object-contain"
+            className="object-cover"
             priority
+            sizes="100vw"
+            quality={90}
           />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
-        <p
-          className="text-xl md:text-2xl font-medium tracking-wider font-mikachan"
-          style={{
-            animation: 'slideInFromRight 1.2s. ease-out 0.3s both',
-          }}
-        >
-          自然の恵みを、そのまま
-        </p>
-        <div
-          className="mt-8"
-          style={{
-            animation: 'slideInFromRight 1.2s ease-out 0.6s both',
-          }}
-        >
-          <a
-            href="https://www.instagram.com/farmars_garden/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-red-500 transition-colors"
-            aria-label="Instagram"
+
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+          <div
+            className="relative w-80 h-40 md:w-96 md:h-48 mb-6"
+            style={{
+              animation: 'slideInFromRight 1.2s ease-out',
+            }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <Image
+              src="/images/splash-logo.png"
+              alt="鳥取ファーマーズガーデン"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+          <p
+            className="text-xl md:text-2xl font-medium tracking-wider font-mikachan"
+            style={{
+              animation: 'slideInFromRight 1.2s. ease-out 0.3s both',
+            }}
+          >
+            自然の恵みを、そのまま
+          </p>
+          <div
+            className="mt-8"
+            style={{
+              animation: 'slideInFromRight 1.2s ease-out 0.6s both',
+            }}
+          >
+            <a
+              href="https://www.instagram.com/farmars_garden/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-red-500 transition-colors"
+              aria-label="Instagram"
             >
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-          </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>

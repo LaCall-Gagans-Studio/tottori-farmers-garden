@@ -7,17 +7,25 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      // 100pxスクロールしたら背景色を変更
-      if (window.scrollY > 100) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-    }
+    const heroSection = document.getElementById('home')
+    if (!heroSection) return
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Heroセクションが少しでも見えている間は透明、完全に見えなくなったら赤
+        // thresholdを0にして、少しでも入っていればisIntersectingがtrueになるようにする
+        setIsScrolled(!entry.isIntersecting)
+      },
+      {
+        root: document.querySelector('main'), // スクロールコンテナを指定
+        threshold: 0, // 少しでも見えていれば検知
+        rootMargin: '-100px 0px 0px 0px', // ヘッダー分少し余裕を持たせる
+      },
+    )
+
+    observer.observe(heroSection)
+
+    return () => observer.disconnect()
   }, [])
 
   const menuItems = [

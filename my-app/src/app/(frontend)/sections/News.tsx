@@ -257,12 +257,16 @@ export default function News() {
 
   return (
     <section
-      className="pt-0 md:pt-10 pb-0 -mt-20 font-mikachan overflow-hidden relative"
+      className="w-full pt-0 md:pt-10 pb-0 font-mikachan overflow-hidden relative flex flex-col justify-center"
       style={{
+        height: '100vh',
+        width: '100vw',
         backgroundImage: 'url(/background-image.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        margin: 0,
+        padding: 0,
       }}
     >
       {/* Background opacity overlay */}
@@ -273,7 +277,7 @@ export default function News() {
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="flex justify-center mb-0 md:mb-2 mt-2 md:mt-20">
           {/* Mobile: Larger for visibility, Desktop: Original size */}
-          <div className="relative w-[320px] h-20 md:w-[900px] md:h-70">
+          <div className="relative w-[350px] h-24 md:w-[900px] md:h-70">
             <Image
               src="/images/news_title.png"
               alt="最新情報"

@@ -1,5 +1,4 @@
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import SplashScreen from '../components/SplashScreen'
 import { ReactNode } from 'react'
 import './styles.css'
@@ -11,7 +10,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SplashScreen />
         <Header />
         <main style={{ margin: 0, padding: 0 }}>{children}</main>
-        <Footer />
       </body>
     </html>
   )
