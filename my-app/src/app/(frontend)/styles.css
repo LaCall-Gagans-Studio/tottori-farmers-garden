@@ -8,8 +8,16 @@
 /* みかちゃんフォントの定義 */
 @font-face {
   font-family: 'Mikachan';
-  src: url('/fonts/mikachan.ttc') format('truetype');
+  src: url('/fonts/mikachan-P-02.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mikachan';
+  src: url('/fonts/mikachan-PB-03.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -21,11 +29,6 @@
 @theme {
   /* Fonts */
   --font-mikachan: 'Mikachan', cursive;
-  --font-kiwi: 'Kiwi Maru', serif;
-  --font-kosugi: 'Kosugi', sans-serif;
-  --font-zenKakuGothicNew: 'Zen Kaku Gothic New', sans-serif;
-  --font-zenKakuGothicAntique: serif;
-  --font-script: 'Dancing Script', cursive;
 
   /* Colors: JSとCSSの設定をマージしました */
   --color-ws-primary: #ffc34e; /* CSS側の値を優先 */

@@ -19,11 +19,6 @@ export default function About() {
               />
             </div>
           </div>
-          {/* <p className="text-ws-black/70 text-lg font-zenKakuGothicNew max-w-2xl mx-auto leading-relaxed">
-            鳥取の豊かな自然と、そこに生きる人々の想いをつなぐ。
-            <br />
-            食卓に笑顔と彩りを届けるために。
-          </p> */}
         </div>
 
         {/* Company Section (Now Top) */}
@@ -76,15 +71,13 @@ export default function About() {
                   <div className="text-lg text-ws-black/80 font-mikachan leading-[32px] text-left">
                     <p>
                       私たちは、
-                      <span className="font-bold text-ws-black px-1">
-                        「鳥取県産のものにこだわり」
-                      </span>
+                      <span className=" text-ws-black px-1">「鳥取県産のものにこだわり」</span>
                       、
                       <br />
                       地域の生産者と消費者を結ぶ架け橋となります。
                     </p>
                     <p className="mt-8">
-                      <span className="font-bold text-ws-black px-1">「地産地消を手軽に」</span>
+                      <span className=" text-ws-black px-1">「地産地消を手軽に」</span>
                       をモットーに、
                       <br />
                       毎日の食卓がもっと楽しく、もっと豊かになるような

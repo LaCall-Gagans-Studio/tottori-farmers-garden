@@ -268,11 +268,11 @@ export default function News() {
     >
       {/* Background opacity overlay */}
       <div
-        className="absolute inset-0 bg-white pointer-events-none"
+        className="absolute inset-0 bg-white pointer-events-none z-0"
         style={{ opacity: 1 - BACKGROUND_OPACITY }}
       ></div>
-      <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex justify-center mb-0 md:mb-2 mt-2 md:mt-20">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10 pointer-events-auto">
+        <div className="flex z-0 justify-center mb-0 md:mb-2 mt-2 md:mt-20">
           {/* Mobile: Larger for visibility, Desktop: Original size */}
           <div className="relative w-[95vw] h-40 md:w-[900px] md:h-70">
             <Image
@@ -284,7 +284,7 @@ export default function News() {
             />
           </div>
         </div>
-        <div className="text-center mb-2 md:mb-6 -mt-10 md:-mt-24">
+        <div className="relative z-20 text-center mb-2 md:mb-6 -mt-10 md:-mt-24">
           <a
             href="https://www.instagram.com/farmars_garden/"
             target="_blank"

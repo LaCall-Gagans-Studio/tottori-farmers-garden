@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <main
       id="main-scroll-container"
-      className="relative h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth"
+      className="relative h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth font-mikachan"
       style={{ margin: 0, padding: 0 }}
     >
       {/* Global Background Image */}

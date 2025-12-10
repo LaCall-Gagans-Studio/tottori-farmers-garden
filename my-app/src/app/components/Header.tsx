@@ -37,8 +37,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full px-6 py-4 md:px-10 md:py-6 flex justify-between items-center z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-red-600/90 shadow-lg backdrop-blur-sm' : 'bg-transparent'
+      className={`fixed top-0 left-0 w-full px-6 py-4 md:px-10 md:py-6 flex justify-between items-center z-50 transition-colors duration-300 ${
+        !open && isScrolled ? 'bg-red-600/90 shadow-lg backdrop-blur-sm' : 'bg-transparent'
       }`}
     >
       {/* 左：大きめロゴ */}
@@ -88,7 +88,10 @@ export default function Header() {
 
       {/* フルスクリーンメニュー */}
       {open && (
-        <nav className="fixed inset-0 bg-red-600 z-[60] flex flex-col items-center justify-center animate-in fade-in duration-300">
+        <nav
+          className="fixed inset-0 w-screen h-dvh z-[60] flex flex-col items-center justify-center transition-none"
+          style={{ backgroundColor: '#C62828' }}
+        >
           {/* メニューリスト */}
           <ul className="space-y-8 text-center flex flex-col items-center">
             {menuItems.map((item) => (
