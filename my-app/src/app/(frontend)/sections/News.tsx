@@ -271,7 +271,7 @@ export default function News() {
         className="absolute inset-0 bg-white pointer-events-none"
         style={{ opacity: 1 - BACKGROUND_OPACITY }}
       ></div>
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
         <div className="flex justify-center mb-0 md:mb-2 mt-2 md:mt-20">
           {/* Mobile: Larger for visibility, Desktop: Original size */}
           <div className="relative w-[95vw] h-40 md:w-[900px] md:h-70">
@@ -290,7 +290,7 @@ export default function News() {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:underline inline-flex items-center gap-2 font-bold"
-            style={{ color: '#dc2626' }}
+            style={{ color: '#E60012' }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

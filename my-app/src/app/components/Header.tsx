@@ -37,8 +37,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-4 left-4 right-4 p-4 flex justify-between items-center z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-red-600/90 shadow-lg rounded-2xl' : 'bg-transparent'
+      className={`fixed top-0 left-0 w-full px-6 py-4 md:px-10 md:py-6 flex justify-between items-center z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-red-600/90 shadow-lg backdrop-blur-sm' : 'bg-transparent'
       }`}
     >
       {/* 左：大きめロゴ */}
