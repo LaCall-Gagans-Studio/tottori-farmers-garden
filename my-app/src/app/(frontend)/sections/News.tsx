@@ -235,8 +235,8 @@ export default function News() {
     // Clips are at -top-6 (-24px).
     // So if card top is at ropeY + 20, clips are at ropeY - 4.
     // This looks about right for "hanging".
-    // Mobile: lifted higher, Desktop: original position
-    const finalY = isMobile ? ropeY - 120 : ropeY + 20
+    // Mobile: lifted much higher to prevent cut-off, Desktop: lifted slightly
+    const finalY = isMobile ? ropeY - 190 : ropeY - 20
 
     // Opacity/Visibility
     // If x is way off screen, hide it
@@ -257,7 +257,7 @@ export default function News() {
 
   return (
     <section
-      className="pt-10 pb-0 -mt-20 font-mikachan overflow-hidden relative"
+      className="pt-0 md:pt-10 pb-0 -mt-20 font-mikachan overflow-hidden relative"
       style={{
         backgroundImage: 'url(/background-image.jpg)',
         backgroundSize: 'cover',
@@ -270,9 +270,10 @@ export default function News() {
         className="absolute inset-0 bg-white pointer-events-none"
         style={{ opacity: 1 - BACKGROUND_OPACITY }}
       ></div>
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex justify-center mb-2 mt-10 md:mt-20">
-          <div className="relative w-[900px] h-70">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <div className="flex justify-center mb-0 md:mb-2 mt-2 md:mt-20">
+          {/* Mobile: Larger for visibility, Desktop: Original size */}
+          <div className="relative w-[320px] h-20 md:w-[900px] md:h-70">
             <Image
               src="/images/news_title.png"
               alt="最新情報"
@@ -282,7 +283,7 @@ export default function News() {
             />
           </div>
         </div>
-        <div className="text-center mb-6 -mt-24">
+        <div className="text-center mb-1 md:mb-6 -mt-1 md:-mt-24">
           <a
             href="https://www.instagram.com/farmars_garden/"
             target="_blank"
@@ -310,7 +311,7 @@ export default function News() {
       </div>
 
       {/* Carousel Container */}
-      <div className="relative h-[650px] md:h-[500px] w-full overflow-hidden">
+      <div className="relative h-[360px] md:h-[500px] w-full overflow-hidden">
         {/* Single Large Rope SVG */}
         <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
           {/* 

@@ -7,10 +7,10 @@ import './styles.css'
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja">
-      <body className="bg-gray-50 min-h-screen">
+      <body className="bg-gray-50 min-h-screen" style={{ margin: 0, padding: 0 }}>
         <SplashScreen />
         <Header />
-        <main>{children}</main>
+        <main style={{ margin: 0, padding: 0 }}>{children}</main>
         <Footer />
       </body>
     </html>

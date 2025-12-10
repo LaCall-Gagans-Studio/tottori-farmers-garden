@@ -36,13 +36,24 @@ export default function Header() {
     >
       {/* 左：大きめロゴ */}
       <div>
-        <Image
-          src="/images/header-logo.png"
-          alt="Logo"
-          width={80}
-          height={80}
-          className="object-contain"
-        />
+        <a
+          href="#home"
+          onClick={(e) => {
+            e.preventDefault()
+            window.location.href = '/#home'
+            window.location.reload()
+          }}
+          className="cursor-pointer block"
+          aria-label="ホームに戻る"
+        >
+          <Image
+            src="/images/header-logo.png"
+            alt="Logo"
+            width={80}
+            height={80}
+            className="object-contain hover:opacity-80 transition-opacity"
+          />
+        </a>
       </div>
 
       {/* 右：ハンバーガーボタン (Animated) */}

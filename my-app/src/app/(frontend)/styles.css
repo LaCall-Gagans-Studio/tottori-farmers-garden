@@ -37,10 +37,11 @@
   --color-ws-gray: #e1e6d8; /* JSから移植 */
   --color-ws-wood: #e6d5c1; /* Hard Maple Color */
 
-  /* Override Red Colors to #EA5A49 (234, 90, 73) */
-  --color-red-400: #ea5a49;
-  --color-red-500: #ea5a49;
-  --color-red-600: #ea5a49;
+  /* Override Red Colors to #C62828 (198, 40, 40) - About Title Image Red */
+  --color-red-400: #c62828;
+  --color-red-500: #c62828;
+  --color-red-600: #c62828;
+  --color-red-700: #b71c1c; /* Darker shade for hover states */
 
   /* Background Image (Placeholder for Wood Texture) */
   --bg-wood-pattern: url('/images/wood-texture.jpg');
@@ -101,6 +102,15 @@
     opacity: initial;
   }
 
+  /* ビューポート全体を使用 */
+  html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     font-family: var(--font-mikachan);
     font-weight: normal;
@@ -109,6 +119,11 @@
     background-repeat: repeat;
     background-size: 400px; /* Adjust based on texture resolution */
     background-blend-mode: multiply; /* Blends texture with color */
+    min-height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
 }
 

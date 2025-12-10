@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 
 // --- Types ---
@@ -91,12 +91,35 @@ const CATEGORIES: Category[] = ['All', 'Meat', 'Dairy', 'Vegetables', 'Processed
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('All')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [isSticky, setIsSticky] = useState(false)
+  const filterRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!filterRef.current || !sectionRef.current) return
+
+      const filterTop = filterRef.current.getBoundingClientRect().top
+      const sectionBottom = sectionRef.current.getBoundingClientRect().bottom
+
+      // ヘッダーの高さを考慮（約96px = top-4 + padding + logo height）
+      const headerHeight = 120
+
+      // フィルターがヘッダーに到達したら固定、セクションの下端を超えたら解除
+      setIsSticky(filterTop <= headerHeight && sectionBottom > headerHeight)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // 初期チェック
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const filteredProducts =
     selectedCategory === 'All' ? PRODUCTS : PRODUCTS.filter((p) => p.category === selectedCategory)
 
   return (
-    <section className="py-12 -mt-20 px-6 text-ws-black font-mikachan">
+    <section ref={sectionRef} className="py-12 -mt-20 px-6 text-ws-black font-mikachan">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6">
@@ -113,29 +136,41 @@ export default function Products() {
           </div>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8 -mt-16">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-6 py-2 rounded-full border transition-all duration-300 ${
-                selectedCategory === cat
-                  ? 'bg-red-600 text-white border-red-600 shadow-lg scale-105'
-                  : 'bg-white text-ws-black border-ws-gray hover:border-red-600 hover:text-red-600'
-              }`}
-            >
-              {cat === 'All'
-                ? 'すべて'
-                : cat === 'Meat'
-                  ? 'お肉'
-                  : cat === 'Dairy'
-                    ? '乳製品'
-                    : cat === 'Vegetables'
-                      ? '野菜'
-                      : '加工品'}
-            </button>
-          ))}
+        {/* Category Filter - with sticky positioning */}
+        <div ref={filterRef} className="relative -mt-16 mb-8">
+          <div
+            className={`flex flex-wrap justify-center gap-4 transition-all duration-300 ${
+              isSticky
+                ? 'fixed top-28 left-0 right-0 z-40 py-4 bg-ws-wood/95 backdrop-blur-sm shadow-lg'
+                : ''
+            }`}
+          >
+            <div className="flex flex-wrap justify-center gap-4">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-6 py-2 rounded-full border transition-all duration-300 ${
+                    selectedCategory === cat
+                      ? 'bg-red-600 text-white border-red-600 shadow-lg scale-105'
+                      : 'bg-white text-ws-black border-ws-gray hover:border-red-600 hover:text-red-600'
+                  }`}
+                >
+                  {cat === 'All'
+                    ? 'すべて'
+                    : cat === 'Meat'
+                      ? 'お肉'
+                      : cat === 'Dairy'
+                        ? '乳製品'
+                        : cat === 'Vegetables'
+                          ? '野菜'
+                          : '加工品'}
+                </button>
+              ))}
+            </div>
+          </div>
+          {/* Placeholder to maintain layout when sticky */}
+          {isSticky && <div className="h-16"></div>}
         </div>
 
         {/* Product Grid */}

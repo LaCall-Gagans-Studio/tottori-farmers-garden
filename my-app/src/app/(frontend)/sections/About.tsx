@@ -159,7 +159,7 @@ export default function About() {
               <div className="relative w-64 h-64 bg-white p-3 shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-500 border border-gray-100">
                 <div className="relative w-full h-full overflow-hidden bg-gray-100">
                   <Image
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800"
+                    src="/images/kawakami-miho.jpg"
                     alt="河上美穂"
                     fill
                     className="object-cover"

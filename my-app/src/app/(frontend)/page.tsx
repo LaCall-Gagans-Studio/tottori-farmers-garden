@@ -8,7 +8,7 @@ import BackToTop from '../components/BackToTop'
 
 export default function Page() {
   return (
-    <main className="relative min-h-screen">
+    <main className="relative min-h-screen" style={{ margin: 0, padding: 0 }}>
       {/* Global Background Image */}
       {/* <div className="fixed inset-0 -z-10 opacity-50">
         <Image
@@ -20,7 +20,7 @@ export default function Page() {
         />
       </div> */}
 
-      <section id="home">
+      <section id="home" style={{ margin: 0, padding: 0 }}>
         <Hero />
       </section>
 
