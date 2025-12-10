@@ -18,8 +18,7 @@ export default function Header() {
       },
       {
         root: document.querySelector('main'), // スクロールコンテナを指定
-        threshold: 0, // 少しでも見えていれば検知
-        rootMargin: '-100px 0px 0px 0px', // ヘッダー分少し余裕を持たせる
+        threshold: 0.1, // 10%以上見えていれば透明
       },
     )
 

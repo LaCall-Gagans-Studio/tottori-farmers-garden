@@ -41,7 +41,7 @@ export default function Page() {
       {/* News Section: Covers the Hero section */}
       <section
         id="news"
-        className="snap-start h-screen w-full relative z-10 bg-white flex flex-col justify-center overflow-hidden"
+        className="snap-start min-h-screen w-full relative z-10 bg-white flex flex-col justify-center overflow-hidden"
       >
         <News />
       </section>

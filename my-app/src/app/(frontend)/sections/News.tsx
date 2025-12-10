@@ -70,13 +70,7 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
     date: '2025.10.28',
     caption: 'ハロウィンイベント開催！カボチャのランタン作り🎃',
   },
-  {
-    id: '9',
-    imageUrl:
-      'https://images.unsplash.com/photo-1595855709915-445676d2a29e?auto=format&fit=crop&q=80&w=800',
-    date: '2025.10.25',
-    caption: '自家製ハーブティーでリラックスタイム🌿',
-  },
+
   {
     id: '10',
     imageUrl:
@@ -259,7 +253,8 @@ export default function News() {
     <section
       className="w-full pt-0 md:pt-10 pb-0 font-mikachan overflow-hidden relative flex flex-col justify-center"
       style={{
-        height: '100vh',
+        height: '110vh', // 少し大きめにして確実に隠す
+        minHeight: '100dvh',
         width: '100vw',
         backgroundImage: 'url(/background-image.jpg)',
         backgroundSize: 'cover',
@@ -267,6 +262,8 @@ export default function News() {
         backgroundRepeat: 'no-repeat',
         margin: 0,
         padding: 0,
+        position: 'relative',
+        zIndex: 20, // z-indexを上げて確実に上に表示
       }}
     >
       {/* Background opacity overlay */}
@@ -277,7 +274,7 @@ export default function News() {
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="flex justify-center mb-0 md:mb-2 mt-2 md:mt-20">
           {/* Mobile: Larger for visibility, Desktop: Original size */}
-          <div className="relative w-[350px] h-24 md:w-[900px] md:h-70">
+          <div className="relative w-[95vw] h-40 md:w-[900px] md:h-70">
             <Image
               src="/images/news_title.png"
               alt="最新情報"
@@ -287,12 +284,13 @@ export default function News() {
             />
           </div>
         </div>
-        <div className="text-center mb-1 md:mb-6 -mt-1 md:-mt-24">
+        <div className="text-center mb-2 md:mb-6 -mt-10 md:-mt-24">
           <a
             href="https://www.instagram.com/farmars_garden/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-red-600 hover:underline inline-flex items-center gap-2 font-bold"
+            className="hover:underline inline-flex items-center gap-2 font-bold"
+            style={{ color: '#dc2626' }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

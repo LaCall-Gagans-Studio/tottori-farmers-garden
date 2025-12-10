@@ -10,17 +10,28 @@ export default function Hero() {
     const mainElement = document.getElementById('main-scroll-container')
     if (!mainElement) return
 
+    let lastScrollY = mainElement.scrollTop
+
     const handleScroll = () => {
       const scrollY = mainElement.scrollTop
       const windowHeight = window.innerHeight
 
-      // ぼかし: 画面の10%スクロールで最大15px（30%程度）
-      const newBlur = Math.min((scrollY / (windowHeight * 0.1)) * 15, 15)
-      setBlurAmount(newBlur)
+      // スクロール方向の判定
+      const isScrollingDown = scrollY > lastScrollY
+      lastScrollY = scrollY
 
-      // 透明度: 画面の20%スクロールで0.5まで下がる（少し暗くなる程度）
-      const newOpacity = Math.max(1 - scrollY / (windowHeight * 0.2), 0.5)
-      setOpacity(newOpacity)
+      if (isScrollingDown) {
+        // 下スクロール（Newsへ）: ぼかしをかける
+        // 画面の5%スクロールで最大3px
+        const newBlur = Math.min((scrollY / (windowHeight * 0.05)) * 3, 3)
+        setBlurAmount(newBlur)
+      } else {
+        // 上スクロール（Heroへ戻る）: ぼかしを解除
+        setBlurAmount(0)
+      }
+
+      // 透明度は変更しない
+      setOpacity(1)
     }
 
     mainElement.addEventListener('scroll', handleScroll)
