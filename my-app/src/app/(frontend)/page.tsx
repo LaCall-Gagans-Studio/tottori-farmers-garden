@@ -36,7 +36,7 @@ export default function Page() {
       </section>
 
       {/* Spacer for Hero to allow scrolling */}
-      <div className="snap-start h-screen w-full"></div>
+      <div id="hero-spacer" className="snap-start h-screen w-full"></div>
 
       {/* News Section: Covers the Hero section */}
       <section

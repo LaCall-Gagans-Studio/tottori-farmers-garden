@@ -7,17 +7,15 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const heroSection = document.getElementById('home')
+    const heroSection = document.getElementById('hero-spacer')
     if (!heroSection) return
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Heroセクションが少しでも見えている間は透明、完全に見えなくなったら赤
-        // thresholdを0にして、少しでも入っていればisIntersectingがtrueになるようにする
+        // Heroセクション（スペーサー）が少しでも見えている間は透明、完全に見えなくなったら赤
         setIsScrolled(!entry.isIntersecting)
       },
       {
-        root: document.querySelector('main'), // スクロールコンテナを指定
         threshold: 0.1, // 10%以上見えていれば透明
       },
     )
@@ -38,7 +36,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 w-full px-6 py-4 md:px-10 md:py-6 flex justify-between items-center z-50 transition-colors duration-300 ${
-        !open && isScrolled ? 'bg-red-600/90 shadow-lg backdrop-blur-sm' : 'bg-transparent'
+        !open && isScrolled ? '' : 'bg-transparent'
       }`}
     >
       {/* 左：大きめロゴ */}
@@ -54,7 +52,7 @@ export default function Header() {
           aria-label="ホームに戻る"
         >
           <Image
-            src="/images/header-logo.png"
+            src={!isScrolled ? '/images/header-logo.png' : '/images/splash-logo.png'}
             alt="Logo"
             width={80}
             height={80}
@@ -63,27 +61,22 @@ export default function Header() {
         </a>
       </div>
 
-      {/* 右：ハンバーガーボタン (Animated) */}
+      {/* 右：ハンバーガーボタン (Image) */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex flex-col justify-center items-center w-8 h-8 focus:outline-none z-[70] space-y-1.5"
+        className="flex justify-center items-center w-12 h-12 focus:outline-none z-[70]"
         aria-label={open ? 'Close menu' : 'Open menu'}
       >
-        <span
-          className={`block w-8 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out ${
-            open ? 'rotate-45 translate-y-2' : ''
-          }`}
-        ></span>
-        <span
-          className={`block w-8 h-0.5 bg-white rounded transition-opacity duration-300 ease-in-out ${
-            open ? 'opacity-0' : 'opacity-100'
-          }`}
-        ></span>
-        <span
-          className={`block w-8 h-0.5 bg-white rounded transition-transform duration-300 ease-in-out ${
-            open ? '-rotate-45 -translate-y-2' : ''
-          }`}
-        ></span>
+        <div className="relative w-8 h-8">
+          <Image
+            src="/images/hamburger-red.png"
+            alt="Menu"
+            fill
+            className={`object-contain transition-all duration-300 ${
+              !isScrolled || open ? 'brightness-0 invert' : ''
+            }`}
+          />
+        </div>
       </button>
 
       {/* フルスクリーンメニュー */}

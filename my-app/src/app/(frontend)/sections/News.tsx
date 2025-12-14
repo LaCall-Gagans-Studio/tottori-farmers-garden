@@ -94,7 +94,8 @@ export default function News() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth)
       const isMobile = window.innerWidth < 768
-      const cardWidth = isMobile ? 240 : 190
+      const isSmallDesktop = window.innerWidth >= 768 && window.innerWidth < 1200
+      const cardWidth = isMobile ? 240 : isSmallDesktop ? 160 : 190
       const gap = isMobile ? 80 : 20
       itemWidthRef.current = cardWidth + gap
     }
@@ -114,7 +115,8 @@ export default function News() {
 
     const getTargetOffset = (index: number) => {
       const isMobile = windowWidth < 768
-      const cardWidth = isMobile ? 240 : 190
+      const isSmallDesktop = windowWidth >= 768 && windowWidth < 1200
+      const cardWidth = isMobile ? 240 : isSmallDesktop ? 160 : 190
       const gap = isMobile ? 80 : 20
       const itemWidth = cardWidth + gap
       // We want card at 'index' to be centered
@@ -172,7 +174,8 @@ export default function News() {
   // Helper to calculate card style based on position
   const getCardStyle = (index: number) => {
     const isMobile = windowWidth < 768
-    const cardWidth = isMobile ? 240 : 190
+    const isSmallDesktop = windowWidth >= 768 && windowWidth < 1200
+    const cardWidth = isMobile ? 240 : isSmallDesktop ? 160 : 190
     const gap = isMobile ? 80 : 20
     const itemWidth = cardWidth + gap
     const totalWidth = itemWidth * INSTAGRAM_POSTS.length
@@ -251,7 +254,7 @@ export default function News() {
 
   return (
     <section
-      className="w-full pt-0 md:pt-10 pb-0 font-mikachan overflow-hidden relative flex flex-col justify-center"
+      className="w-full pt-0 md:pt-10 pb-0 font-mikachan overflow-x-hidden relative flex flex-col justify-center"
       style={{
         height: '110vh', // 少し大きめにして確実に隠す
         minHeight: '100dvh',
@@ -313,7 +316,7 @@ export default function News() {
       </div>
 
       {/* Carousel Container */}
-      <div className="relative h-[360px] md:h-[500px] w-full overflow-visible">
+      <div className="relative h-[360px] md:h-[600px] w-full overflow-visible">
         {/* Single Large Rope SVG */}
         <svg className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
           {/* 

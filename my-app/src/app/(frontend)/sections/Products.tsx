@@ -91,28 +91,32 @@ const CATEGORIES: Category[] = ['All', 'Meat', 'Dairy', 'Vegetables', 'Processed
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('All')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [isSticky, setIsSticky] = useState(false)
-  const filterRef = useRef<HTMLDivElement>(null)
+  const [opacity, setOpacity] = useState(1)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!filterRef.current || !sectionRef.current) return
+      if (!sectionRef.current) return
+      const rect = sectionRef.current.getBoundingClientRect()
 
-      const filterTop = filterRef.current.getBoundingClientRect().top
-      const sectionBottom = sectionRef.current.getBoundingClientRect().bottom
+      // セクションの下端が画面上部に近づいたらフェードアウト
+      // sticky位置(約90px) + 余白を考慮して調整
+      const fadeStart = 400 // フェード開始位置
+      const fadeEnd = 150 // フェード終了位置（完全に透明）
 
-      // ヘッダーの高さを考慮（約96px = top-4 + padding + logo height）
-      const headerHeight = 120
+      let newOpacity = 1
+      if (rect.bottom < fadeStart) {
+        newOpacity = Math.max(0, (rect.bottom - fadeEnd) / (fadeStart - fadeEnd))
+      }
 
-      // フィルターがヘッダーに到達したら固定、セクションの下端を超えたら解除
-      setIsSticky(filterTop <= headerHeight && sectionBottom > headerHeight)
+      setOpacity(newOpacity)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // 初期チェック
+    const scrollContainer = document.getElementById('main-scroll-container') || window
+    scrollContainer.addEventListener('scroll', handleScroll)
+    handleScroll()
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => scrollContainer.removeEventListener('scroll', handleScroll)
   }, [])
 
   const filteredProducts =
@@ -123,7 +127,7 @@ export default function Products() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-center mb-2">
+          <div className="flex justify-center mb-0">
             <div className="relative w-[400px] h-70">
               <Image
                 src="/images/products_title.png"
@@ -136,15 +140,11 @@ export default function Products() {
           </div>
         </div>
 
-        {/* Category Filter - with sticky positioning */}
-        <div ref={filterRef} className="relative -mt-16 mb-8">
-          <div
-            className={`flex flex-wrap justify-center gap-4 transition-all duration-300 ${
-              isSticky
-                ? 'fixed top-28 left-0 right-0 z-40 py-4 bg-ws-wood/95 backdrop-blur-sm shadow-lg'
-                : ''
-            }`}
-          >
+        <div
+          className="sticky top-[80px] md:top-[90px] z-40 mb-8 py-4 -mt-16 md:-mt-24 transition-all duration-300"
+          style={{ opacity, pointerEvents: opacity < 0.5 ? 'none' : 'auto' }}
+        >
+          <div className="flex flex-wrap justify-center gap-4">
             <div className="flex flex-wrap justify-center gap-4">
               {CATEGORIES.map((cat) => (
                 <button
@@ -153,7 +153,7 @@ export default function Products() {
                   className={`px-6 py-2 rounded-full border transition-all duration-300 ${
                     selectedCategory === cat
                       ? 'bg-red-600 text-white border-red-600 shadow-lg scale-105'
-                      : 'bg-white text-ws-black border-ws-gray hover:border-red-600 hover:text-red-600'
+                      : 'bg-white text-red-600 border-ws-gray hover:border-red-600'
                   }`}
                 >
                   {cat === 'All'
@@ -169,8 +169,6 @@ export default function Products() {
               ))}
             </div>
           </div>
-          {/* Placeholder to maintain layout when sticky */}
-          {isSticky && <div className="h-16"></div>}
         </div>
 
         {/* Product Grid */}
