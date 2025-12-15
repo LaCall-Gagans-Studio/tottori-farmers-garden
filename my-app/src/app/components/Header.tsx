@@ -64,48 +64,46 @@ export default function Header() {
       {/* 右：ハンバーガーボタン (Image) */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex justify-center items-center w-12 h-12 focus:outline-none z-[70]"
+        className="flex justify-center items-center w-20 h-20 focus:outline-none z-[70]"
         aria-label={open ? 'Close menu' : 'Open menu'}
       >
-        <div className="relative w-8 h-8">
+        <div className="relative w-28 h-28">
           <Image
-            src="/images/hamburger-red.png"
+            src={!isScrolled || open ? '/images/hamburger-lines.png' : '/images/hamburger-cow.png'}
             alt="Menu"
             fill
-            className={`object-contain transition-all duration-300 ${
-              !isScrolled || open ? 'brightness-0 invert' : ''
-            }`}
+            className="object-contain transition-all duration-300"
           />
         </div>
       </button>
 
-      {/* フルスクリーンメニュー */}
-      {open && (
-        <nav
-          className="fixed inset-0 w-screen h-dvh z-[60] flex flex-col items-center justify-center transition-none"
-          style={{ backgroundColor: '#C62828' }}
-        >
-          {/* メニューリスト */}
-          <ul className="space-y-8 text-center flex flex-col items-center">
-            {menuItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block relative w-96 h-32 hover:opacity-80 transition-opacity overflow-hidden"
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.label}
-                    fill
-                    className="object-contain scale-[1.5]"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+      {/* サイドメニュー (Right Slide-in) */}
+      <nav
+        className={`fixed top-0 right-0 h-dvh w-[85vw] md:w-[90vw] md:max-w-[1300px] z-[60] flex flex-col items-center justify-center transition-transform duration-500 ease-in-out ${
+          open ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ backgroundColor: '#C62828' }}
+      >
+        {/* メニューリスト */}
+        <ul className="space-y-8 text-center flex flex-col items-center">
+          {menuItems.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="block relative w-80 h-24 md:w-96 md:h-32 hover:opacity-80 transition-opacity overflow-hidden"
+              >
+                <Image
+                  src={item.image}
+                  alt={item.label}
+                  fill
+                  className="object-contain scale-[1.5]"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   )
 }

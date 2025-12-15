@@ -141,16 +141,25 @@ export default function Products() {
         </div>
 
         <div
-          className="sticky top-[80px] md:top-[90px] z-40 mb-8 py-4 -mt-16 md:-mt-24 transition-all duration-300"
+          className="sticky top-[100px] md:top-[120px] z-40 mb-8 py-4 -mt-16 md:-mt-24 transition-all duration-300"
           style={{ opacity, pointerEvents: opacity < 0.5 ? 'none' : 'auto' }}
         >
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-visible justify-start md:justify-center gap-4 px-4 md:px-0 scrollbar-hide">
+            <style jsx>{`
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `}</style>
+            <div className="flex flex-nowrap md:flex-wrap gap-4 min-w-max md:min-w-0">
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-6 py-2 rounded-full border transition-all duration-300 ${
+                  className={`px-6 py-2 rounded-full border transition-all duration-300 whitespace-nowrap ${
                     selectedCategory === cat
                       ? 'bg-red-600 text-white border-red-600 shadow-lg scale-105'
                       : 'bg-white text-red-600 border-ws-gray hover:border-red-600'
