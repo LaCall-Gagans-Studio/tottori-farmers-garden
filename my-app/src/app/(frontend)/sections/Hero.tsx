@@ -1,130 +1,86 @@
 'use client'
-import { useEffect, useState } from 'react'
+
 import Image from 'next/image'
 
 export default function Hero() {
-  const [blurAmount, setBlurAmount] = useState(0)
-  const [opacity, setOpacity] = useState(1)
-
-  useEffect(() => {
-    const mainElement = document.getElementById('main-scroll-container')
-    if (!mainElement) return
-
-    let lastScrollY = mainElement.scrollTop
-
-    const handleScroll = () => {
-      const scrollY = mainElement.scrollTop
-      const windowHeight = window.innerHeight
-
-      // スクロール方向の判定
-      const isScrollingDown = scrollY > lastScrollY
-      lastScrollY = scrollY
-
-      if (isScrollingDown) {
-        // 下スクロール（Newsへ）: ぼかしをかける
-        // 画面の5%スクロールで最大3px
-        const newBlur = Math.min((scrollY / (windowHeight * 0.05)) * 3, 3)
-        setBlurAmount(newBlur)
-      } else {
-        // 上スクロール（Heroへ戻る）: ぼかしを解除
-        setBlurAmount(0)
-      }
-
-      // 透明度は変更しない
-      setOpacity(1)
-    }
-
-    mainElement.addEventListener('scroll', handleScroll)
-    // 初期状態でも実行
-    handleScroll()
-
-    return () => mainElement.removeEventListener('scroll', handleScroll)
-  }, [])
-
   return (
-    <div
-      className="relative w-full flex flex-col justify-center items-center text-white overflow-hidden"
-      style={{
-        minHeight: 'calc(100vh + 120px)',
-        height: 'calc(100vh + 120px)',
-      }}
-    >
-      {/* 全体にぼかしを適用するラッパー */}
+    <div className="relative w-full h-screen md:h-[130vh] flex flex-col justify-center items-center text-white overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-bg.png"
+          alt="Hero Background"
+          fill
+          className="object-cover object-[center_60%] md:object-[center_40%]"
+          priority
+          sizes="100vw"
+          quality={90}
+        />
+      </div>
+
+      {/* Cloud 1 - Left Top (Large) */}
       <div
-        className="w-full h-full transition-all duration-75 ease-out will-change-[filter,opacity]"
+        className="absolute top-[25%] md:top-[12%] left-[8%] w-24 md:w-72 h-16 md:h-48 z-[15] opacity-70"
         style={{
-          filter: `blur(${blurAmount}px)`,
-          opacity: opacity,
+          animation: 'fadeIn 1s ease-out 0s forwards',
         }}
       >
-        {/* Background Image */}
-        <div className="absolute -inset-1 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1920"
-            alt="Hero Background"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-            quality={90}
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
+        <Image src="/images/kumo-1.png" alt="" fill className="object-contain" priority />
+      </div>
 
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-          <div
-            className="relative w-80 h-40 md:w-96 md:h-48 mb-6"
-            style={{
-              animation: 'slideInFromRight 1.2s ease-out',
-            }}
-          >
-            <Image
-              src="/images/splash-logo.png"
-              alt="鳥取ファーマーズガーデン"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-          <p
-            className="text-xl md:text-2xl font-medium tracking-wider font-mikachan"
-            style={{
-              animation: 'slideInFromRight 1.2s. ease-out 0.3s both',
-            }}
-          >
-            自然の恵みを、そのまま
-          </p>
-          <div
-            className="mt-8"
-            style={{
-              animation: 'slideInFromRight 1.2s ease-out 0.6s both',
-            }}
-          >
-            <a
-              href="https://www.instagram.com/farmars_garden/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-red-500 transition-colors"
-              aria-label="Instagram"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-          </div>
+      {/* Cloud 2 - Left Middle (Small) */}
+      <div
+        className="absolute top-[45%] md:top-[35%] left-[5%] w-20 md:w-48 h-14 md:h-32 z-[15] opacity-70"
+        style={{
+          animation: 'fadeIn 1s ease-out 2s forwards',
+        }}
+      >
+        <Image src="/images/kumo-3.png" alt="" fill className="object-contain" />
+      </div>
+
+      {/* Cloud 3 - Right Top (Medium) */}
+      <div
+        className="absolute top-[28%] md:top-[18%] right-[12%] w-22 md:w-60 h-16 md:h-40 z-[15] opacity-70"
+        style={{
+          animation: 'fadeIn 1s ease-out 4s forwards',
+        }}
+      >
+        <Image src="/images/kumo-2.png" alt="" fill className="object-contain" />
+      </div>
+
+      {/* Cloud 4 - Right Middle (Small) */}
+      <div
+        className="absolute top-[42%] md:top-[32%] right-[5%] w-20 md:w-52 h-14 md:h-36 z-[15] opacity-70"
+        style={{
+          animation: 'fadeIn 1s ease-out 6s forwards',
+        }}
+      >
+        <Image src="/images/kumo-3.png" alt="" fill className="object-contain" />
+      </div>
+
+      <div className="relative z-20 flex flex-col items-center justify-start pt-20 md:pt-32 h-full text-white px-4">
+        <div
+          className="relative w-32 h-16 md:w-56 md:h-28 mb-4 md:mb-6"
+          style={{
+            animation: 'slideInFromRight 1.2s ease-out',
+          }}
+        >
+          <Image
+            src="/images/splash-logo.png"
+            alt="鳥取ファーマーズガーデン"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
+        <p
+          className="text-lg md:text-2xl font-medium tracking-wider font-mikachan mb-6 md:mb-8"
+          style={{
+            animation: 'slideInFromRight 1.2s. ease-out 0.3s both',
+          }}
+        >
+          自然の恵みを、そのまま
+        </p>
       </div>
     </div>
   )

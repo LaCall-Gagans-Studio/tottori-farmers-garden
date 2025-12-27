@@ -12,10 +12,19 @@ export default function Footer() {
           className="object-contain object-bottom"
         />
       </div>
+      {/* Tatemono Image sitting on top of footer */}
+      <div className="absolute bottom-full right-0 w-64 h-32 md:w-[500px] md:h-64 z-0 translate-y-[10px] pointer-events-none">
+        <Image
+          src="/images/tatemono.png"
+          alt="Building"
+          fill
+          className="object-contain object-bottom"
+        />
+      </div>
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
           {/* Left Side: Text Area (Company, Address, Phone) */}
-          <div className="w-full md:w-1/2 flex flex-col justify-between h-80">
+          <div className="w-full md:w-1/2 flex flex-col gap-8">
             <div>
               <div className="relative w-96 h-24 mb-2">
                 <Image
@@ -37,7 +46,7 @@ export default function Footer() {
                   鳥取県鳥取市吉成７３１−１
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                 <span className="font-bold min-w-[5em]">電話番号</span>
                 <a href="tel:0857-50-0910" className="hover:underline font-bold">
                   0857-50-0910
