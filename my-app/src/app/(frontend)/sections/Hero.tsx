@@ -4,18 +4,20 @@ import Image from 'next/image'
 
 export default function Hero() {
   return (
-    <div className="relative w-full h-screen md:h-[130vh] flex flex-col justify-center items-center text-white overflow-hidden">
+    <div className="relative w-full h-screen flex flex-col justify-center items-center text-white overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero-bg.png"
-          alt="Hero Background"
-          fill
-          className="object-cover object-[center_60%] md:object-[center_40%]"
-          priority
-          sizes="100vw"
-          quality={90}
-        />
+      <div className="absolute inset-0 z-0 bg-[#d9f1ff]">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/hero-bg-v2.png"
+            alt="Hero Background"
+            fill
+            className="object-contain object-bottom scale-110 md:scale-125 origin-bottom md:translate-y-8"
+            priority
+            sizes="100vw"
+            quality={90}
+          />
+        </div>
       </div>
 
       {/* Cloud 1 - Left Top (Large) */}
@@ -58,7 +60,7 @@ export default function Hero() {
         <Image src="/images/kumo-3.png" alt="" fill className="object-contain" />
       </div>
 
-      <div className="relative z-20 flex flex-col items-center justify-start pt-20 md:pt-32 h-full text-white px-4">
+      <div className="relative z-20 flex flex-col items-center justify-center md:justify-start pt-0 md:pt-32 h-full text-white px-4">
         <div
           className="relative w-32 h-16 md:w-56 md:h-28 mb-4 md:mb-6"
           style={{
@@ -74,9 +76,9 @@ export default function Hero() {
           />
         </div>
         <p
-          className="text-lg md:text-2xl font-medium tracking-wider font-mikachan mb-6 md:mb-8"
+          className="text-lg md:text-2xl font-medium tracking-wider font-mikachan mb-6 md:mb-8 text-red-600"
           style={{
-            animation: 'slideInFromRight 1.2s. ease-out 0.3s both',
+            animation: 'slideInFromRight 1.2s ease-out 0.3s both',
           }}
         >
           自然の恵みを、そのまま

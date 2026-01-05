@@ -100,7 +100,7 @@ const CATEGORIES: Category[] = [
 const getCategoryLabel = (cat: Category): string => {
   const labels: Record<Category, string> = {
     All: 'すべて',
-    Seasonal: '季節限定',
+    Seasonal: 'シーズン',
     New: '新製品',
     Meat: 'お肉',
     Dairy: '乳製品',
@@ -137,8 +137,8 @@ export default function Products() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Header */}
           <div className="max-w-6xl mx-auto px-6">
-            <div className="flex justify-center mb-0">
-              <div className="relative w-[400px] h-70">
+            <div className="flex justify-center mb-12">
+              <div className="relative w-[300px] h-24 md:w-[400px] md:h-32">
                 <Image
                   src="/images/products_title_v2.png"
                   alt="商品情報"
@@ -163,37 +163,55 @@ export default function Products() {
 
               {/* First Row */}
               <div className="grid grid-cols-4 gap-0 mb-0 relative z-10">
+                {CATEGORIES.slice(0, 4).map((cat) => (
+                  <div key={cat} className="relative flex items-center justify-center">
                     <button
                       onClick={() => setSelectedCategory(cat)}
-                      className="relative px-2 py-2 text-center font-mikachan text-lg md:text-xl font-bold transition-all duration-300 group w-full"
+                      className="relative px-1 py-2 text-center font-mikachan text-sm md:text-xl font-bold transition-all duration-300 group w-full min-h-[60px] flex items-center justify-center"
                     >
-                      <span
-                        className={`relative z-10 transition-colors duration-300 ${
-                          selectedCategory === cat
-                            ? 'text-red-700'
-                            : 'text-red-600 group-hover:text-red-700'
-                        }`}
-                      >
-                        {getCategoryLabel(cat)}
-                      </span>
-                      {/* Category Marker Image */}
+                      <div className="relative z-10 flex items-center justify-center w-full">
+                        <div className="relative">
+                          {/* PC Icon (Cow) - Positioned to the left of the text without pushing it */}
+                          <div
+                            className={`hidden md:block transition-all duration-300 absolute right-full mr-2 top-1/2 -translate-y-1/2 w-8 h-8 ${
+                              selectedCategory === cat
+                                ? 'opacity-100 scale-110'
+                                : 'opacity-0 scale-50'
+                            }`}
+                          >
+                            <Image
+                              src="/images/category-marker-v2.png"
+                              alt=""
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                          <span
+                            className={`transition-colors duration-300 whitespace-nowrap ${
+                              selectedCategory === cat
+                                ? 'text-white md:text-red-700'
+                                : 'text-red-600 group-hover:text-red-700'
+                            }`}
+                          >
+                            {getCategoryLabel(cat)}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Mobile Background (Red Circle) */}
                       <div
-                        className={`absolute inset-0 transition-all duration-300 ${
-                          selectedCategory === cat
-                            ? 'opacity-100'
-                            : 'opacity-0 group-hover:opacity-40'
+                        className={`absolute inset-0 transition-all duration-300 z-0 md:hidden flex items-center justify-center ${
+                          selectedCategory === cat ? 'opacity-100 scale-110' : 'opacity-0 scale-90'
                         }`}
-                        style={{
-                          transform:
-                            selectedCategory === cat ? 'scale(1.1) rotate(-2deg)' : 'scale(0.9)',
-                        }}
                       >
-                        <Image
-                          src="/images/category-marker.png"
-                          alt=""
-                          fill
-                          className="object-contain"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/images/category-bg-mobile.png"
+                            alt=""
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
                       </div>
                     </button>
                   </div>
@@ -205,37 +223,55 @@ export default function Products() {
 
               {/* Second Row */}
               <div className="grid grid-cols-4 gap-0 relative z-10">
+                {CATEGORIES.slice(4, 8).map((cat) => (
+                  <div key={cat} className="relative flex items-center justify-center">
                     <button
                       onClick={() => setSelectedCategory(cat)}
-                      className="relative px-2 py-2 text-center font-mikachan text-lg md:text-xl font-bold transition-all duration-300 group w-full"
+                      className="relative px-1 py-2 text-center font-mikachan text-sm md:text-xl font-bold transition-all duration-300 group w-full min-h-[60px] flex items-center justify-center"
                     >
-                      <span
-                        className={`relative z-10 transition-colors duration-300 ${
-                          selectedCategory === cat
-                            ? 'text-red-700'
-                            : 'text-red-600 group-hover:text-red-700'
-                        }`}
-                      >
-                        {getCategoryLabel(cat)}
-                      </span>
-                      {/* Category Marker Image */}
+                      <div className="relative z-10 flex items-center justify-center w-full">
+                        <div className="relative">
+                          {/* PC Icon (Cow) - Positioned to the left of the text without pushing it */}
+                          <div
+                            className={`hidden md:block transition-all duration-300 absolute right-full mr-2 top-1/2 -translate-y-1/2 w-8 h-8 ${
+                              selectedCategory === cat
+                                ? 'opacity-100 scale-110'
+                                : 'opacity-0 scale-50'
+                            }`}
+                          >
+                            <Image
+                              src="/images/category-marker-v2.png"
+                              alt=""
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                          <span
+                            className={`transition-colors duration-300 whitespace-nowrap ${
+                              selectedCategory === cat
+                                ? 'text-white md:text-red-700'
+                                : 'text-red-600 group-hover:text-red-700'
+                            }`}
+                          >
+                            {getCategoryLabel(cat)}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Mobile Background (Red Circle) */}
                       <div
-                        className={`absolute inset-0 transition-all duration-300 ${
-                          selectedCategory === cat
-                            ? 'opacity-100'
-                            : 'opacity-0 group-hover:opacity-40'
+                        className={`absolute inset-0 transition-all duration-300 z-0 md:hidden flex items-center justify-center ${
+                          selectedCategory === cat ? 'opacity-100 scale-110' : 'opacity-0 scale-90'
                         }`}
-                        style={{
-                          transform:
-                            selectedCategory === cat ? 'scale(1.1) rotate(2deg)' : 'scale(0.9)',
-                        }}
                       >
-                        <Image
-                          src="/images/category-marker.png"
-                          alt=""
-                          fill
-                          className="object-contain"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/images/category-bg-mobile.png"
+                            alt=""
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
                       </div>
                     </button>
                   </div>
@@ -295,7 +331,7 @@ export default function Products() {
           {/* Modal */}
           {selectedProduct && (
             <div
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
               onClick={() => setSelectedProduct(null)}
             >
               <div

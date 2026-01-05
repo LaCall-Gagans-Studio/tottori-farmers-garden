@@ -30,7 +30,7 @@ export default function Page() {
       {/* Hero Section: Fixed to stay behind */}
       <section
         id="home"
-        className="snap-start h-screen md:h-[130vh] w-full relative z-0"
+        className="snap-start h-screen w-full relative z-0"
         style={{ margin: 0, padding: 0 }}
       >
         <Hero />

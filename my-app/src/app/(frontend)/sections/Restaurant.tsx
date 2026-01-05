@@ -16,47 +16,62 @@ const RESTAURANT_ITEMS: NewsItem[] = [
   {
     id: '1',
     imageUrl:
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800',
-    date: '2025.11.27',
-    caption:
-      '地元の食材をふんだんに使った冬の新作コース料理が始まりました。🍷 #鳥取レストラン #地産地消',
+      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 01',
+    caption: '鳥取和牛の極上ステーキ',
   },
   {
     id: '2',
     imageUrl:
-      'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800',
-    date: '2025.11.25',
-    caption: '自家製ハーブティーで心も体も温まるひとときを。🌿',
+      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 02',
+    caption: '採れたてガーデンサラダ',
   },
   {
     id: '3',
     imageUrl:
-      'https://images.unsplash.com/photo-1550966842-2862cb996dd4?auto=format&fit=crop&q=80&w=800',
-    date: '2025.11.20',
-    caption: 'テラス席からの夕景。贅沢な時間をお過ごしください。🌅',
+      'https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 03',
+    caption: '自家製生パスタのボロネーゼ',
   },
   {
     id: '4',
     imageUrl:
-      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=800',
-    date: '2025.11.15',
-    caption: 'シェフ特製のデザートプレート。お祝い事にも最適です。🎂',
+      'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 04',
+    caption: '季節の地野菜ポタージュ',
   },
   {
     id: '5',
     imageUrl:
-      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800',
-    date: '2025.11.10',
-    caption: '新鮮な野菜のグリル。素材本来の味をお楽しみください。🥗',
+      'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 05',
+    caption: '大山どりのハーブグリル',
+  },
+  {
+    id: '6',
+    imageUrl:
+      'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 06',
+    caption: 'パティシエ特製デザート',
+  },
+  {
+    id: '7',
+    imageUrl:
+      'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 07',
+    caption: '搾りたて旬のフルーツジュース',
+  },
+  {
+    id: '8',
+    imageUrl:
+      'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800',
+    date: 'Menu 08',
+    caption: '石窯で焼いた自家製パン',
   },
 ]
 
-// Background image opacity (0-1) - currently handled by inner white div
-
 export default function Restaurant() {
-  const pickupItem = RESTAURANT_ITEMS[0]
-  const sideItems = RESTAURANT_ITEMS.slice(1, 5)
-
   return (
     <section
       id="restaurant"
@@ -84,186 +99,53 @@ export default function Restaurant() {
               className="object-contain"
             />
           </div>
-          <div className="absolute top-0 right-0 w-48 h-64 md:w-80 md:h-96">
+          <div className="absolute -top-10 -right-10 md:-right-20 w-48 h-40 md:w-80 md:h-64">
             <Image
               src="/images/news-decoration-right.png"
               alt="Decoration Right"
               fill
-              className="object-contain object-top object-right"
+              className="object-contain"
             />
           </div>
         </div>
 
         {/* Title */}
-        <div className="relative w-[90vw] h-32 md:w-[600px] md:h-48 mb-8 md:mb-12">
-          {/* Using a placeholder or the same title image for now, user can change later */}
-          <Image
-            src="/images/news_title.png"
-            alt="レストラン情報"
-            fill
-            className="object-contain"
-            priority
-          />
+        <div className="flex flex-col items-center mb-12">
+          <div className="relative w-[300px] h-24 md:w-[400px] md:h-32">
+            <Image
+              src="/images/restaurant_title_v2.png"
+              alt="レストラン情報"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="mt-2 text-center">
+            <p className="text-red-600 font-bold text-lg md:text-xl">営業時間 11:00〜14:30</p>
+            <p className="text-red-600 font-bold text-sm md:text-base">(ラストオーダー 14:00)</p>
+          </div>
         </div>
 
         {/* Content Grid */}
         <div className="w-full max-w-7xl">
-          {/* Mobile Layout: Simple Stack */}
-          <div className="flex flex-col gap-12 lg:hidden">
-            {/* Pickup */}
-            <a
-              href={pickupItem.url || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col w-full relative"
-            >
-              {/* Pickup Decoration Image - Mobile */}
-              <div className="absolute -top-6 -right-2 w-28 h-14 z-30 pointer-events-none drop-shadow-lg">
-                <Image
-                  src="/images/pickup-text.png"
-                  alt="Pick UP!"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl shadow-lg border border-gray-100 mb-4">
-                <Image
-                  src={pickupItem.imageUrl}
-                  alt={pickupItem.caption}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-              </div>
-              <p className="text-lg font-bold text-gray-800 line-clamp-3 leading-relaxed px-2">
-                {pickupItem.caption}
-              </p>
-            </a>
-            {/* Standard Items */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {sideItems.map((post) => (
-                <a
-                  key={post.id}
-                  href={post.url || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col w-full"
-                >
-                  <div className="relative aspect-3/2 w-full overflow-hidden rounded-2xl shadow-md border border-gray-100 mb-3">
-                    <Image
-                      src={post.imageUrl}
-                      alt=""
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-                  <p className="text-sm text-gray-700 line-clamp-3 leading-relaxed px-1">
-                    {post.caption}
-                  </p>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop Layout: Big Right, Small Left */}
-          <div className="hidden lg:grid grid-cols-4 gap-x-8 gap-y-0 items-start">
-            {/* Left Column Row 1: Images 1 & 2 */}
-            {sideItems.slice(0, 2).map((post, idx) => (
-              <div
-                key={`img-top-${post.id}`}
-                className={`col-span-1 row-start-1 col-start-${idx + 1}`}
-              >
-                <a
-                  href={post.url || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block relative aspect-3/2 w-full overflow-hidden rounded-2xl shadow-md border border-gray-100"
-                >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-8 md:gap-y-12">
+            {RESTAURANT_ITEMS.map((item) => (
+              <div key={item.id} className="flex flex-col group">
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-md border border-gray-100 mb-3">
                   <Image
-                    src={post.imageUrl}
-                    alt=""
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </a>
-              </div>
-            ))}
-
-            {/* Left Column Row 2: Captions 1 & 2 */}
-            {sideItems.slice(0, 2).map((post, idx) => (
-              <div
-                key={`txt-top-${post.id}`}
-                className={`col-span-1 row-start-2 mb-6 px-1 col-start-${idx + 1}`}
-              >
-                <p className="text-sm text-gray-700 line-clamp-3 leading-relaxed">{post.caption}</p>
-              </div>
-            ))}
-
-            {/* Left Column Row 3: Images 3 & 4 */}
-            {sideItems.slice(2, 4).map((post, idx) => (
-              <div
-                key={`img-bot-${post.id}`}
-                className={`col-span-1 row-start-3 col-start-${idx + 1}`}
-              >
-                <a
-                  href={post.url || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block relative aspect-3/2 w-full overflow-hidden rounded-2xl shadow-md border border-gray-100"
-                >
-                  <Image
-                    src={post.imageUrl}
-                    alt=""
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </a>
-              </div>
-            ))}
-
-            {/* Left Column Row 4: Captions 3 & 4 */}
-            {sideItems.slice(2, 4).map((post, idx) => (
-              <div
-                key={`txt-bot-${post.id}`}
-                className={`col-span-1 row-start-4 px-1 mt-4 col-start-${idx + 1}`}
-              >
-                <p className="text-sm text-gray-700 line-clamp-3 leading-relaxed">{post.caption}</p>
-              </div>
-            ))}
-
-            {/* Right Column: Pickup (Large) */}
-            <div className="col-span-2 row-span-3 row-start-1 col-start-3 relative flex flex-col h-full">
-              <div className="absolute -top-10 -right-4 w-36 h-18 z-30 pointer-events-none drop-shadow-lg">
-                <Image
-                  src="/images/pickup-text.png"
-                  alt="Pick UP!"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-
-              <a
-                href={pickupItem.url || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex flex-col h-full transition-all duration-500"
-              >
-                <div className="relative flex-1 w-full overflow-hidden rounded-3xl shadow-lg border border-gray-100 mb-4">
-                  <Image
-                    src={pickupItem.imageUrl}
-                    alt={pickupItem.caption}
+                    src={item.imageUrl}
+                    alt={item.caption}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 </div>
-              </a>
-            </div>
-
-            {/* Right Column Row 4: Pickup Caption */}
-            <div className="col-span-2 row-start-4 col-start-3 px-2 mt-4">
-              <p className="text-base text-gray-800 line-clamp-3 leading-relaxed font-bold">
-                {pickupItem.caption}
-              </p>
-            </div>
+                <div className="px-1">
+                  <p className="text-sm md:text-base text-gray-800 font-bold leading-snug">
+                    {item.caption}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

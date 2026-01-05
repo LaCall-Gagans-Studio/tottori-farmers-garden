@@ -17,31 +17,13 @@ export default function About() {
       }}
     >
       <div className="w-full min-h-full bg-white relative z-10 py-20 px-6">
-        {/* Top Red Semi-circle connecting to previous section */}
-        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180 -translate-y-[99%] z-20">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-            className="relative block w-full h-[100px] md:h-[150px]"
-          >
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-              opacity=".25"
-              className="hidden"
-            ></path>
-            {/* Simple convex curve (semi-circle like) */}
-            <path d="M0,0 C600,200 600,200 1200,0 V120 H0 V0Z" fill="#C62828"></path>
-          </svg>
-        </div>
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
-              <div className="relative w-80 h-32 md:w-96 md:h-40">
+              <div className="relative w-[300px] h-24 md:w-[400px] md:h-32">
                 <Image
-                  src="/images/about_nav.png"
+                  src="/images/about_title_v2.png"
                   alt="私たちについて"
                   fill
                   className="object-contain"
@@ -53,16 +35,6 @@ export default function About() {
 
           {/* Philosophy Section */}
           <div className="mb-40 flex flex-col items-center text-center">
-            {/* Logo */}
-            <div className="relative w-72 h-20 md:w-96 md:h-24 mb-12">
-              <Image
-                src="/images/splash-logo.png"
-                alt="鳥取ファーマーズガーデン"
-                fill
-                className="object-contain"
-              />
-            </div>
-
             {/* Main Image */}
             <div className="relative w-full md:w-[700px] h-[300px] md:h-[450px] mb-16">
               <div className="relative w-full h-full overflow-hidden">

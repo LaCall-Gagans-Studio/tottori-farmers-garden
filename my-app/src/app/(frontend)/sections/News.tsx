@@ -102,29 +102,8 @@ export default function News() {
       }}
     >
       <div className="w-full min-h-full bg-white relative z-10 flex flex-col items-center pt-20 pb-20 px-4 md:px-6">
-        {/* Decoration Images */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-          {/* Left Image - Keep as is or slightly adjust if needed, but user only mentioned right */}
-          <div className="absolute -top-10 -left-10 md:-left-20 w-48 h-40 md:w-80 md:h-64">
-            <Image
-              src="/images/news-decoration-left.png"
-              alt="Decoration Left"
-              fill
-              className="object-contain"
-            />
-          </div>
-          {/* Right Image - Stuck to top and right */}
-          <div className="absolute top-0 right-0 w-48 h-64 md:w-80 md:h-96">
-            <Image
-              src="/images/news-decoration-right.png"
-              alt="Decoration Right"
-              fill
-              className="object-contain object-top object-right"
-            />
-          </div>
-        </div>
         {/* Title */}
-        <div className="relative w-[90vw] h-32 md:w-[600px] md:h-48 mb-8 md:mb-12">
+        <div className="relative w-[300px] h-24 md:w-[400px] md:h-32 mb-12">
           <Image
             src="/images/news_title_v4.png"
             alt="最新情報"

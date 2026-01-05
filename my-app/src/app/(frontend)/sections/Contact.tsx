@@ -17,9 +17,9 @@ export default function Contact() {
       <div className="w-full min-h-full bg-white relative z-10 py-20 px-6">
         <div className="max-w-6xl mx-auto ">
           <div className="flex justify-center mb-12">
-            <div className="relative w-96 h-40">
+            <div className="relative w-[300px] h-24 md:w-[400px] md:h-32">
               <Image
-                src="/images/contact_title.png"
+                src="/images/contact_title_v2.png"
                 alt="お問い合わせ"
                 fill
                 className="object-contain"
