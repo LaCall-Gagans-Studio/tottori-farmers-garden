@@ -16,8 +16,8 @@ export default function Contact() {
     >
       <div className="w-full min-h-full bg-white relative z-10 py-20 px-6">
         <div className="max-w-6xl mx-auto ">
-          <div className="flex justify-center mb-12">
-            <div className="relative w-[300px] h-24 md:w-[400px] md:h-32">
+          <div className="relative flex justify-center mb-12">
+            <div className="relative w-[240px] h-20 md:w-[360px] md:h-28">
               <Image
                 src="/images/contact_title_v2.png"
                 alt="お問い合わせ"
@@ -25,6 +25,23 @@ export default function Contact() {
                 className="object-contain"
                 priority
               />
+              {/* Animation positioned to the right of the centered title */}
+              <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-24 h-24 md:w-32 md:h-32">
+                <Image
+                  src="/images/contact-cow-1.png"
+                  alt=""
+                  fill
+                  className="object-contain absolute inset-0"
+                  style={{ animation: 'cow-loading-1 0.8s infinite' }}
+                />
+                <Image
+                  src="/images/contact-cow-2.png"
+                  alt=""
+                  fill
+                  className="object-contain absolute inset-0"
+                  style={{ animation: 'cow-loading-2 0.8s infinite' }}
+                />
+              </div>
             </div>
           </div>
           <form className="space-y-4 max-w-2xl mx-auto">

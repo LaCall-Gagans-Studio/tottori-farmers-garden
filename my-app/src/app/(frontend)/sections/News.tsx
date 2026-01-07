@@ -191,7 +191,7 @@ export default function News() {
                 rel="noopener noreferrer"
                 className="group relative flex flex-col h-full transition-all duration-500"
               >
-                <div className="relative flex-1 w-full overflow-hidden rounded-3xl shadow-lg border border-gray-100 mb-4">
+                <div className="relative flex-1 w-full overflow-hidden rounded-3xl shadow-lg border border-gray-100">
                   <Image
                     src={pickupPost.imageUrl}
                     alt={pickupPost.caption}
