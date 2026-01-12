@@ -25,8 +25,8 @@ export default function Contact() {
                 className="object-contain"
                 priority
               />
-              {/* Animation positioned to the right of the centered title */}
-              <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-24 h-24 md:w-32 md:h-32">
+              {/* Animation positioned to the right of the centered title, moved closer by 0.5x size */}
+              <div className="absolute left-full top-1/2 -translate-y-1/2 -ml-8 md:-ml-12 w-24 h-24 md:w-32 md:h-32">
                 <Image
                   src="/images/contact-cow-1.png"
                   alt=""

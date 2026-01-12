@@ -103,7 +103,7 @@ export default function News() {
     >
       <div className="w-full min-h-full bg-white relative z-10 flex flex-col items-center pt-20 pb-20 px-4 md:px-6">
         {/* Title */}
-        <div className="relative w-[300px] h-24 md:w-[400px] md:h-32 mb-12">
+        <div className="relative w-[260px] h-20 md:w-[400px] md:h-32 mb-12">
           <Image
             src="/images/news_title_v4.png"
             alt="最新情報"
@@ -111,6 +111,30 @@ export default function News() {
             className="object-contain"
             priority
           />
+          {/* Animation positioned: Right-side of the title, adjusted to prevent overlap/overflow */}
+          <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 md:ml-4 w-20 h-20 md:w-24 md:h-24">
+            <Image
+              src="/images/news-cow-v2-1.png"
+              alt=""
+              fill
+              className="object-contain absolute inset-0"
+              style={{ animation: 'news-cow-step-1 3s infinite' }}
+            />
+            <Image
+              src="/images/news-cow-v2-2.png"
+              alt=""
+              fill
+              className="object-contain absolute inset-0"
+              style={{ animation: 'news-cow-step-2 3s infinite' }}
+            />
+            <Image
+              src="/images/news-cow-v2-3.png"
+              alt=""
+              fill
+              className="object-contain absolute inset-0"
+              style={{ animation: 'news-cow-step-3 3s infinite' }}
+            />
+          </div>
         </div>
 
         {/* Content Grid */}
