@@ -16,58 +16,58 @@ const RESTAURANT_ITEMS: NewsItem[] = [
   {
     id: '1',
     imageUrl:
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 01',
-    caption: '鳥取和牛の極上ステーキ',
+    caption: 'ローストステーキ丼',
   },
   {
     id: '2',
     imageUrl:
-      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 02',
-    caption: '採れたてガーデンサラダ',
+    caption: 'ヒレステーキ定食',
   },
   {
     id: '3',
     imageUrl:
-      'https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 03',
-    caption: '自家製生パスタのボロネーゼ',
+    caption: '焼きしゃぶ丼',
   },
   {
     id: '4',
     imageUrl:
-      'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 04',
-    caption: '季節の地野菜ポタージュ',
+    caption: '病みつき牛丼',
   },
   {
     id: '5',
     imageUrl:
-      'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 05',
-    caption: '大山どりのハーブグリル',
+    caption: '和牛焼肉重',
   },
   {
     id: '6',
     imageUrl:
-      'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 06',
-    caption: 'パティシエ特製デザート',
+    caption: '和牛めし',
   },
   {
     id: '7',
     imageUrl:
-      'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 07',
-    caption: '搾りたて旬のフルーツジュース',
+    caption: '牛すじ煮込み定食',
   },
   {
     id: '8',
     imageUrl:
-      'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1582450871972-ab5ca641643d?auto=format&fit=crop&q=80&w=800',
     date: 'Menu 08',
-    caption: '石窯で焼いた自家製パン',
+    caption: '牛鍋定食',
   },
 ]
 

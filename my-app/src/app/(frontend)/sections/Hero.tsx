@@ -5,17 +5,20 @@ import Image from 'next/image'
 export default function Hero() {
   return (
     <div className="relative w-full h-screen flex flex-col justify-center items-center text-white overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 bg-[#d9f1ff]">
-        <div className="relative w-full h-full">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 z-0">
+        <Image src="/images/hero-bg-v3.png" alt="" fill className="object-cover" priority />
+      </div>
+
+      {/* Building Image */}
+      <div className="absolute inset-0 z-[10] flex items-end justify-center pb-[8%] md:pb-[5%]">
+        <div className="relative w-[80%] md:w-[60%] aspect-video max-w-4xl">
           <Image
-            src="/images/hero-bg-v2.png"
-            alt="Hero Background"
+            src="/images/tatemono-v2.png"
+            alt="Farmers Garden Building"
             fill
-            className="object-contain object-bottom scale-110 md:scale-125 origin-bottom md:translate-y-8"
+            className="object-contain object-bottom"
             priority
-            sizes="100vw"
-            quality={90}
           />
         </div>
       </div>

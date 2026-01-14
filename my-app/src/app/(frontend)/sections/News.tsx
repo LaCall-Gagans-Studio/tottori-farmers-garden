@@ -111,27 +111,27 @@ export default function News() {
             className="object-contain"
             priority
           />
-          {/* Animation positioned: Right-side of the title, adjusted to prevent overlap/overflow */}
-          <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 md:ml-4 w-20 h-20 md:w-24 md:h-24">
+          {/* Animation positioned: Left-side of the title, flipped horizontally, overlapped on mobile to prevent overflow */}
+          <div className="absolute right-full top-1/2 -translate-y-1/2 -mr-6 md:mr-4 w-20 h-20 md:w-24 md:h-24">
             <Image
               src="/images/news-cow-v2-1.png"
               alt=""
               fill
-              className="object-contain absolute inset-0"
+              className="object-contain absolute inset-0 -scale-x-100"
               style={{ animation: 'news-cow-step-1 3s infinite' }}
             />
             <Image
               src="/images/news-cow-v2-2.png"
               alt=""
               fill
-              className="object-contain absolute inset-0"
+              className="object-contain absolute inset-0 -scale-x-100"
               style={{ animation: 'news-cow-step-2 3s infinite' }}
             />
             <Image
               src="/images/news-cow-v2-3.png"
               alt=""
               fill
-              className="object-contain absolute inset-0"
+              className="object-contain absolute inset-0 -scale-x-100"
               style={{ animation: 'news-cow-step-3 3s infinite' }}
             />
           </div>
