@@ -101,7 +101,7 @@ const getCategoryLabel = (cat: Category): string => {
   const labels: Record<Category, string> = {
     All: 'すべて',
     Seasonal: 'シーズン',
-    New: '新製品',
+    New: '新商品',
     Meat: 'お肉',
     Dairy: '乳製品',
     Vegetables: '野菜',
@@ -133,11 +133,11 @@ export default function Products() {
         backgroundAttachment: 'fixed',
       }}
     >
-      <div className="w-full min-h-full bg-white relative z-10 pt-20 pb-20 px-6">
+      <div className="w-full min-h-full bg-white relative z-10 pt-10 md:pt-16 pb-20 px-6 rounded-[40px] md:rounded-[60px] overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Header */}
           <div className="max-w-6xl mx-auto px-6">
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-4 md:mb-6">
               <div className="relative w-[300px] h-24 md:w-[400px] md:h-32">
                 <Image
                   src="/images/products_title_v2.png"
@@ -150,146 +150,88 @@ export default function Products() {
             </div>
           </div>
 
-          {/* Category Buttons - 2 Rows with Dotted Dividers */}
-          <div className="mb-8 py-2">
-            <div className="max-w-4xl mx-auto relative">
-              {/* Vertical Dotted Dividers - Full Height */}
-              <div className="absolute inset-0 grid grid-cols-4 pointer-events-none">
-                <div />
-                <div className="border-l-2 border-dotted border-red-600" />
-                <div className="border-l-2 border-dotted border-red-600" />
-                <div className="border-l-2 border-dotted border-red-600" />
-              </div>
+          {/* Category Buttons */}
+          <div className="mb-6 md:mb-8">
+            <div className="max-w-7xl mx-auto px-1 md:px-4 overflow-x-auto no-scrollbar">
+              <div className="grid grid-cols-4 md:flex md:flex-nowrap md:justify-center lg:justify-between gap-x-1 gap-y-4 md:gap-4 lg:gap-6 min-w-max md:min-w-full">
+                {CATEGORIES.map((cat) => {
+                  const isActive = selectedCategory === cat
 
-              {/* First Row */}
-              <div className="grid grid-cols-4 gap-0 mb-0 relative z-10">
-                {CATEGORIES.slice(0, 4).map((cat) => (
-                  <div key={cat} className="relative flex items-center justify-center">
-                    <button
-                      onClick={() => setSelectedCategory(cat)}
-                      className="relative px-1 py-2 text-center font-mikachan text-sm md:text-xl font-bold transition-all duration-300 group w-full min-h-[60px] flex items-center justify-center"
-                    >
-                      <div className="relative z-10 flex items-center justify-center w-full">
-                        <div className="relative">
-                          {/* PC Icon (Cow) - Positioned to the left of the text without pushing it */}
+                  let iconSrc = ''
+                  if (cat === 'All') {
+                    iconSrc = isActive
+                      ? '/images/category-all-active.png'
+                      : '/images/category-all-inactive.png'
+                  } else if (cat === 'Seasonal') {
+                    iconSrc = isActive
+                      ? '/images/category-seasonal-active.png'
+                      : '/images/category-seasonal-inactive.png'
+                  } else if (cat === 'New') {
+                    iconSrc = isActive
+                      ? '/images/category-new-active.png'
+                      : '/images/category-new-inactive.png'
+                  } else if (cat === 'Meat') {
+                    iconSrc = isActive
+                      ? '/images/category-meat-active.png'
+                      : '/images/category-meat-inactive.png'
+                  } else {
+                    iconSrc = isActive
+                      ? '/images/category-all-active.png'
+                      : '/images/category-all-inactive.png'
+                  }
+
+                  return (
+                    <div key={cat} className="flex flex-col items-center">
+                      <button
+                        onClick={() => setSelectedCategory(cat)}
+                        className="group flex flex-col items-center transition-all duration-300 w-full"
+                      >
+                        {/* Icon Circle */}
+                        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 mb-1 flex items-center justify-center">
+                          {/* Circle Background */}
                           <div
-                            className={`hidden md:block transition-all duration-300 absolute right-full mr-2 top-1/2 -translate-y-1/2 w-8 h-8 ${
-                              selectedCategory === cat
-                                ? 'opacity-100 scale-110'
-                                : 'opacity-0 scale-50'
+                            className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                              isActive ? 'bg-transparent scale-110' : 'bg-white'
                             }`}
-                          >
+                          />
+
+                          {/* Icon Image */}
+                          <div className="relative w-full h-full p-2">
                             <Image
-                              src="/images/category-marker-v2.png"
+                              src={iconSrc}
                               alt=""
                               fill
-                              className="object-contain"
+                              className="object-contain p-2 transition-all duration-300"
                             />
                           </div>
-                          <span
-                            className={`transition-colors duration-300 whitespace-nowrap ${
-                              selectedCategory === cat
-                                ? 'text-white md:text-red-700'
-                                : 'text-red-600 group-hover:text-red-700'
-                            }`}
-                          >
-                            {getCategoryLabel(cat)}
-                          </span>
                         </div>
-                      </div>
 
-                      {/* Mobile Background (Red Circle) */}
-                      <div
-                        className={`absolute inset-0 transition-all duration-300 z-0 md:hidden flex items-center justify-center ${
-                          selectedCategory === cat ? 'opacity-100 scale-110' : 'opacity-0 scale-90'
-                        }`}
-                      >
-                        <div className="relative w-full h-full">
-                          <Image
-                            src="/images/category-bg-mobile.png"
-                            alt=""
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              {/* Horizontal Dotted Divider */}
-              <div className="w-full border-t-2 border-dotted border-red-600 my-2 relative z-10" />
-
-              {/* Second Row */}
-              <div className="grid grid-cols-4 gap-0 relative z-10">
-                {CATEGORIES.slice(4, 8).map((cat) => (
-                  <div key={cat} className="relative flex items-center justify-center">
-                    <button
-                      onClick={() => setSelectedCategory(cat)}
-                      className="relative px-1 py-2 text-center font-mikachan text-sm md:text-xl font-bold transition-all duration-300 group w-full min-h-[60px] flex items-center justify-center"
-                    >
-                      <div className="relative z-10 flex items-center justify-center w-full">
-                        <div className="relative">
-                          {/* PC Icon (Cow) - Positioned to the left of the text without pushing it */}
-                          <div
-                            className={`hidden md:block transition-all duration-300 absolute right-full mr-2 top-1/2 -translate-y-1/2 w-8 h-8 ${
-                              selectedCategory === cat
-                                ? 'opacity-100 scale-110'
-                                : 'opacity-0 scale-50'
-                            }`}
-                          >
-                            <Image
-                              src="/images/category-marker-v2.png"
-                              alt=""
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
-                          <span
-                            className={`transition-colors duration-300 whitespace-nowrap ${
-                              selectedCategory === cat
-                                ? 'text-white md:text-red-700'
-                                : 'text-red-600 group-hover:text-red-700'
-                            }`}
-                          >
-                            {getCategoryLabel(cat)}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Mobile Background (Red Circle) */}
-                      <div
-                        className={`absolute inset-0 transition-all duration-300 z-0 md:hidden flex items-center justify-center ${
-                          selectedCategory === cat ? 'opacity-100 scale-110' : 'opacity-0 scale-90'
-                        }`}
-                      >
-                        <div className="relative w-full h-full">
-                          <Image
-                            src="/images/category-bg-mobile.png"
-                            alt=""
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                ))}
+                        {/* Label Text */}
+                        <span
+                          className={`text-[11px] sm:text-xs md:text-xl font-bold transition-colors duration-300 whitespace-nowrap ${
+                            isActive ? 'text-red-700' : 'text-red-600'
+                          }`}
+                        >
+                          {getCategoryLabel(cat)}
+                        </span>
+                      </button>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
 
           {/* Product Grid */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 min-h-[400px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 min-h-[400px]">
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
                   className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-ws-gray/30"
                   onClick={() => setSelectedProduct(product)}
                 >
-                  <div className="relative h-64 w-full overflow-hidden">
+                  <div className="relative h-80 md:h-[450px] w-full overflow-hidden">
                     <Image
                       src={product.imageUrl}
                       alt={product.title}
@@ -300,14 +242,14 @@ export default function Products() {
                       {product.origin}
                     </div>
                   </div>
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-2">
+                  <div className="p-4">
+                    <div className="flex justify-between items-start mb-1">
                       <h3 className="text-xl font-bold text-ws-black group-hover:text-red-600 transition-colors">
                         {product.title}
                       </h3>
                     </div>
-                    <p className="text-ws-black/60 text-sm line-clamp-2">{product.description}</p>
-                    <div className="mt-4 flex items-center text-red-600 font-bold text-sm group-hover:translate-x-2 transition-transform">
+                    <p className="text-ws-black/60 text-sm line-clamp-1">{product.description}</p>
+                    <div className="mt-2 flex items-center text-red-600 font-bold text-sm group-hover:translate-x-2 transition-transform">
                       詳細を見る <span className="ml-1">→</span>
                     </div>
                   </div>
@@ -331,7 +273,7 @@ export default function Products() {
           {/* Modal */}
           {selectedProduct && (
             <div
-              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+              className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
               onClick={() => setSelectedProduct(null)}
             >
               <div

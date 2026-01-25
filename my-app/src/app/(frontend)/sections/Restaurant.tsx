@@ -88,7 +88,7 @@ export default function Restaurant() {
         zIndex: 20,
       }}
     >
-      <div className="w-full min-h-full bg-white relative z-10 flex flex-col items-center pt-20 pb-20 px-4 md:px-6">
+      <div className="w-full min-h-full bg-white relative z-10 flex flex-col items-center pt-20 pb-20 px-4 md:px-6 rounded-[40px] md:rounded-[60px] overflow-hidden">
         {/* Decoration Images */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
           <div className="absolute -top-10 -left-10 md:-left-20 w-48 h-40 md:w-80 md:h-64">

@@ -14,7 +14,7 @@ export default function Contact() {
         backgroundAttachment: 'fixed',
       }}
     >
-      <div className="w-full min-h-full bg-white relative z-10 py-20 px-6">
+      <div className="w-full min-h-full bg-white relative z-10 py-20 px-6 rounded-[40px] md:rounded-[60px] overflow-hidden">
         <div className="max-w-6xl mx-auto ">
           <div className="relative flex justify-center mb-12">
             <div className="relative w-[240px] h-20 md:w-[360px] md:h-28">

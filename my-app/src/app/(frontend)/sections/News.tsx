@@ -101,7 +101,7 @@ export default function News() {
         zIndex: 20,
       }}
     >
-      <div className="w-full min-h-full bg-white relative z-10 flex flex-col items-center pt-20 pb-20 px-4 md:px-6">
+      <div className="w-full min-h-full bg-white relative z-10 flex flex-col items-center pt-20 pb-20 px-4 md:px-6 rounded-[40px] md:rounded-[60px] overflow-hidden">
         {/* Title */}
         <div className="relative w-[260px] h-20 md:w-[400px] md:h-32 mb-12">
           <Image
