@@ -152,8 +152,8 @@ export default function Products() {
 
           {/* Category Buttons */}
           <div className="mb-6 md:mb-8">
-            <div className="max-w-7xl mx-auto px-1 md:px-4">
-              <div className="grid grid-cols-4 md:flex md:flex-nowrap md:justify-center lg:justify-between gap-x-1 gap-y-4 md:gap-4 lg:gap-6 md:min-w-full">
+            <div className="max-w-7xl mx-auto px-0 md:px-4">
+              <div className="grid grid-cols-4 md:flex md:flex-nowrap md:justify-center lg:justify-between gap-x-0.5 gap-y-4 md:gap-4 lg:gap-6 md:min-w-full">
                 {CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat
 
@@ -184,7 +184,7 @@ export default function Products() {
                         className="group flex flex-col items-center transition-all duration-300 w-full"
                       >
                         {/* Icon Circle */}
-                        <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 mb-1 flex items-center justify-center">
+                        <div className="relative w-[88px] h-[88px] sm:w-24 sm:h-24 md:w-32 md:h-32 mb-1 flex items-center justify-center">
                           {/* Circle Background */}
                           <div
                             className={`absolute inset-0 rounded-full transition-all duration-300 ${
