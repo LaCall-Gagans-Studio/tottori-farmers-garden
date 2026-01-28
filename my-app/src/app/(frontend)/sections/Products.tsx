@@ -152,8 +152,8 @@ export default function Products() {
 
           {/* Category Buttons */}
           <div className="mb-6 md:mb-8">
-            <div className="max-w-7xl mx-auto px-1 md:px-4 overflow-x-auto no-scrollbar">
-              <div className="grid grid-cols-4 md:flex md:flex-nowrap md:justify-center lg:justify-between gap-x-1 gap-y-4 md:gap-4 lg:gap-6 min-w-max md:min-w-full">
+            <div className="max-w-7xl mx-auto px-1 md:px-4">
+              <div className="grid grid-cols-4 md:flex md:flex-nowrap md:justify-center lg:justify-between gap-x-1 gap-y-4 md:gap-4 lg:gap-6 md:min-w-full">
                 {CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat
 
@@ -184,7 +184,7 @@ export default function Products() {
                         className="group flex flex-col items-center transition-all duration-300 w-full"
                       >
                         {/* Icon Circle */}
-                        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 mb-1 flex items-center justify-center">
+                        <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 mb-1 flex items-center justify-center">
                           {/* Circle Background */}
                           <div
                             className={`absolute inset-0 rounded-full transition-all duration-300 ${
@@ -205,7 +205,7 @@ export default function Products() {
 
                         {/* Label Text */}
                         <span
-                          className={`text-[11px] sm:text-xs md:text-xl font-bold transition-colors duration-300 whitespace-nowrap ${
+                          className={`text-[14px] sm:text-base md:text-xl font-bold transition-colors duration-300 whitespace-nowrap ${
                             isActive ? 'text-red-700' : 'text-red-600'
                           }`}
                         >
