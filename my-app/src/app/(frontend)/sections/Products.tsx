@@ -157,27 +157,24 @@ export default function Products() {
                 {CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat
 
-                  let iconSrc = ''
-                  if (cat === 'All') {
-                    iconSrc = isActive
-                      ? '/images/category-all-active.png'
-                      : '/images/category-all-inactive.png'
-                  } else if (cat === 'Seasonal') {
-                    iconSrc = isActive
-                      ? '/images/category-seasonal-active.png'
-                      : '/images/category-seasonal-inactive.png'
-                  } else if (cat === 'New') {
-                    iconSrc = isActive
-                      ? '/images/category-new-active.png'
-                      : '/images/category-new-inactive.png'
-                  } else if (cat === 'Meat') {
-                    iconSrc = isActive
-                      ? '/images/category-meat-active.png'
-                      : '/images/category-meat-inactive.png'
-                  } else {
-                    iconSrc = isActive
-                      ? '/images/category-all-active.png'
-                      : '/images/category-all-inactive.png'
+                  const catLower = cat.toLowerCase()
+                  const status = isActive ? 'active' : 'inactive'
+
+                  // Map categories to available images
+                  const imagesAvailable: Record<string, string[]> = {
+                    all: ['active', 'inactive'],
+                    meat: ['active', 'inactive'],
+                    new: ['active', 'inactive'],
+                    seasonal: ['active', 'inactive'],
+                    processed: ['active', 'inactive'],
+                    dairy: ['active', 'inactive'],
+                    vegetables: ['active', 'inactive'],
+                    goods: ['active', 'inactive'],
+                  }
+
+                  let iconSrc = `/images/category-all-${status}.png`
+                  if (imagesAvailable[catLower]?.includes(status)) {
+                    iconSrc = `/images/category-${catLower}-${status}.png`
                   }
 
                   return (
