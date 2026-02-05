@@ -58,13 +58,18 @@ export default function SplashScreen() {
           showLogo ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <Image
-          src={COW_ANIMATION_IMAGES[currentFrame]}
-          alt="Tottori Farmers Garden"
-          fill
-          className="object-contain"
-          priority
-        />
+        {COW_ANIMATION_IMAGES.map((src, index) => (
+          <Image
+            key={src}
+            src={src}
+            alt="Tottori Farmers Garden"
+            fill
+            className={`object-contain transition-opacity duration-0 ${
+              currentFrame === index ? 'opacity-100' : 'opacity-0'
+            }`}
+            priority
+          />
+        ))}
       </div>
     </div>
   )
