@@ -75,7 +75,7 @@ export default function Restaurant() {
   return (
     <section
       id="restaurant"
-      className="w-full font-mikachan overflow-hidden relative p-3 md:p-5"
+      className="w-full font-kiwi overflow-hidden relative p-3 md:p-5"
       style={{
         minHeight: '100vh',
         width: '100vw',

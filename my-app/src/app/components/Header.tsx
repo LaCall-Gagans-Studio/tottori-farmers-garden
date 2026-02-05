@@ -1,26 +1,33 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [isVisible, setIsVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const lastScrollY = useRef(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
+      const container = document.getElementById('main-scroll-container')
+      if (!container) return
+
+      const currentScrollY = container.scrollTop
+
       // 100px以上スクロールした際に、下スクロールで非表示、上スクロールで表示
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
         setIsVisible(false)
       } else {
         setIsVisible(true)
       }
-      setLastScrollY(currentScrollY)
+      lastScrollY.current = currentScrollY
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    const container = document.getElementById('main-scroll-container')
+    if (container) {
+      container.addEventListener('scroll', handleScroll, { passive: true })
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,22 +38,24 @@ export default function Header() {
         })
       },
       {
-        root: null,
+        root: container,
         threshold: 0.5,
       },
     )
 
-    const sections = ['home', 'news', 'products', 'about', 'contact']
+    const sections = ['home', 'news', 'products', 'restaurant', 'about', 'contact']
     sections.forEach((id) => {
       const el = document.getElementById(id)
       if (el) observer.observe(el)
     })
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (container) {
+        container.removeEventListener('scroll', handleScroll)
+      }
       observer.disconnect()
     }
-  }, [lastScrollY])
+  }, [])
 
   // Home(home) and About sections have dark/red backgrounds, so use White header elements
   const isWhiteTheme = activeSection === 'home' || activeSection === 'about'
@@ -85,9 +94,9 @@ export default function Header() {
             <Image
               src={isWhiteTheme ? '/images/header-logo.png' : '/images/splash-logo.png'}
               alt="Logo"
-              width={50}
-              height={50}
-              className="object-contain hover:opacity-80 transition-opacity"
+              width={80}
+              height={80}
+              className="w-12 h-12 md:w-20 md:h-20 object-contain hover:opacity-80 transition-opacity"
             />
           </a>
         </div>
@@ -100,7 +109,7 @@ export default function Header() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-white text-sm lg:text-lg font-bold hover:scale-105 transition-all font-mikachan whitespace-nowrap"
+                className="text-white text-sm lg:text-lg font-bold hover:scale-105 transition-all font-kiwi whitespace-nowrap"
                 onClick={(e) => {
                   if (item.label === 'ホーム') {
                     e.preventDefault()

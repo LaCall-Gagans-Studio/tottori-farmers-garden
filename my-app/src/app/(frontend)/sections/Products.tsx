@@ -122,7 +122,7 @@ export default function Products() {
   return (
     <section
       ref={sectionRef}
-      className="w-full font-mikachan overflow-hidden relative p-3 md:p-5"
+      className="w-full font-kiwi overflow-hidden relative p-3 md:p-5"
       style={{
         minHeight: '100vh',
         width: '100vw',
@@ -153,7 +153,7 @@ export default function Products() {
           {/* Category Buttons */}
           <div className="mb-6 md:mb-8">
             <div className="max-w-7xl mx-auto px-0 md:px-4">
-              <div className="grid grid-cols-4 md:flex md:flex-nowrap md:justify-center lg:justify-between gap-x-0.5 gap-y-4 md:gap-4 lg:gap-6 md:min-w-full">
+              <div className="grid grid-cols-4 md:flex md:flex-wrap md:justify-center xl:flex-nowrap xl:justify-between gap-x-0.5 gap-y-8 md:gap-x-8 md:gap-y-10 lg:gap-12 xl:gap-6 md:min-w-full">
                 {CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat
 
@@ -184,7 +184,7 @@ export default function Products() {
                         className="group flex flex-col items-center transition-all duration-300 w-full"
                       >
                         {/* Icon Circle */}
-                        <div className="relative w-[88px] h-[88px] sm:w-24 sm:h-24 md:w-32 md:h-32 mb-1 flex items-center justify-center">
+                        <div className="relative w-[72px] h-[72px] sm:w-24 sm:h-24 md:w-32 md:h-32 mb-1 flex items-center justify-center">
                           {/* Circle Background */}
                           <div
                             className={`absolute inset-0 rounded-full transition-all duration-300 ${
@@ -205,7 +205,7 @@ export default function Products() {
 
                         {/* Label Text */}
                         <span
-                          className={`text-[14px] sm:text-base md:text-xl font-bold transition-colors duration-300 whitespace-nowrap ${
+                          className={`text-[12px] sm:text-base md:text-xl font-bold transition-colors duration-300 whitespace-nowrap ${
                             isActive ? 'text-red-700' : 'text-red-600'
                           }`}
                         >
@@ -263,7 +263,7 @@ export default function Products() {
                   className="object-contain grayscale"
                 />
               </div>
-              <p className="text-2xl font-bold text-gray-400 font-mikachan">ただいま準備中です。</p>
+              <p className="text-2xl font-bold text-gray-400 font-kiwi">ただいま準備中です。</p>
             </div>
           )}
 
@@ -317,7 +317,7 @@ export default function Products() {
                               ? '加工品'
                               : 'その他'}
                     </div>
-                    <h3 className="text-3xl font-bold mb-2 font-mikachan">
+                    <h3 className="text-3xl font-bold mb-2 font-kiwi">
                       {selectedProduct.title}
                     </h3>
                     <p className="text-ws-black/50 mb-6 flex items-center gap-2">

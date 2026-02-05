@@ -28,7 +28,7 @@
 /* 3. テーマ設定 (以前の tailwind.config.js の内容をここに統合) */
 @theme {
   /* Fonts */
-  --font-mikachan: 'Mikachan', cursive;
+  --font-kiwi: 'Kiwi Maru', serif;
 
   /* Colors: JSとCSSの設定をマージしました */
   --color-ws-primary: #ffc34e; /* CSS側の値を優先 */
@@ -103,8 +103,8 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-mikachan);
-    font-weight: normal;
+    font-family: var(--font-kiwi);
+    font-weight: 500;
   }
 
   /* ダークモード/ライトモードのちらつき防止 */
@@ -123,8 +123,8 @@
   }
 
   body {
-    font-family: var(--font-mikachan);
-    font-weight: normal;
+    font-family: var(--font-kiwi);
+    font-weight: 300;
     background-color: var(--color-ws-wood);
     background-image: var(--bg-wood-pattern);
     background-repeat: repeat;

@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default function About() {
   return (
     <section
-      className="w-full font-mikachan overflow-hidden relative p-3 md:p-5"
+      className="w-full font-kiwi overflow-hidden relative p-3 md:p-5"
       style={{
         minHeight: '100vh',
         width: '100vw',
@@ -48,7 +48,7 @@ export default function About() {
             </div>
 
             {/* Text */}
-            <div className="text-lg md:text-xl text-gray-800 font-mikachan leading-[2.5] tracking-wider">
+            <div className="text-lg md:text-xl text-gray-800 font-kiwi leading-[2.5] tracking-wider">
               <p className="mb-8">
                 私たちは、
                 <span className="text-xl md:text-2xl font px-2 border-b border-gray-800/30">
@@ -74,7 +74,7 @@ export default function About() {
           <div className="flex flex-col items-center text-center">
             {/* Name */}
             <div className="mb-12">
-              <h3 className="text-3xl md:text-4xl font font-mikachan text-gray-800 mb-2">
+              <h3 className="text-3xl md:text-4xl font font-kiwi text-gray-800 mb-2">
                 河上 美穂
               </h3>
               <p className="text-gray-600 text-sm tracking-widest">REPRESENTATIVE</p>
@@ -93,7 +93,7 @@ export default function About() {
             </div>
 
             {/* Text */}
-            <div className="text-lg md:text-xl text-gray-800 font-mikachan leading-[2.5] tracking-wider">
+            <div className="text-lg md:text-xl text-gray-800 font-kiwi leading-[2.5] tracking-wider">
               <p className="mb-8">20xx年より鳥取ファーマーズガーデンを開業。</p>
               <p className="mb-8">
                 「食を通じて地域を元気にしたい」という想いから、

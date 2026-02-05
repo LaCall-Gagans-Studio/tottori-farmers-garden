@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="bg-red-600 text-white py-16 font-mikachan relative">
+    <footer className="bg-red-600 text-white py-16 font-kiwi relative">
       {/* Cow Image standing on top of footer */}
       <div className="absolute bottom-full left-4 w-24 h-24 md:left-10 md:w-40 md:h-40 z-10 translate-y-3">
         <Image

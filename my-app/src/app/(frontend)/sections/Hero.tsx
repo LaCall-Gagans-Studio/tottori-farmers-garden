@@ -79,7 +79,7 @@ export default function Hero() {
           />
         </div>
         <p
-          className="text-lg md:text-2xl font-medium tracking-wider font-mikachan mb-6 md:mb-8 text-red-600"
+          className="text-lg md:text-2xl font-medium tracking-wider font-kiwi mb-6 md:mb-8 text-red-600"
           style={{
             animation: 'slideInFromRight 1.2s ease-out 0.3s both',
           }}
