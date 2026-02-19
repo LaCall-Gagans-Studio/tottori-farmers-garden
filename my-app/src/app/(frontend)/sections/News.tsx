@@ -11,6 +11,8 @@ interface InstagramPost {
   url?: string // Optional: direct link to Instagram post
 }
 
+const INSTAGRAM_URL = 'https://www.instagram.com/farmars_garden/'
+
 // --- Dummy Data ---
 const INSTAGRAM_POSTS: InstagramPost[] = [
   {
@@ -143,7 +145,7 @@ export default function News() {
           <div className="flex flex-col gap-12 lg:hidden">
             {/* Pickup - Slightly larger aspect ratio for mobile prominence */}
             <a
-              href={pickupPost.url || '#'}
+              href={pickupPost.url || INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col w-full relative"
@@ -174,7 +176,7 @@ export default function News() {
               {sidePosts.slice(0, 4).map((post) => (
                 <a
                   key={post.id}
-                  href={post.url || '#'}
+                  href={post.url || INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex flex-col w-full"
@@ -210,7 +212,7 @@ export default function News() {
               </div>
 
               <a
-                href={pickupPost.url || '#'}
+                href={pickupPost.url || INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative flex flex-col h-full transition-all duration-500"
@@ -233,7 +235,7 @@ export default function News() {
                 className={`col-span-1 row-start-1 col-start-${idx + 3}`}
               >
                 <a
-                  href={post.url || '#'}
+                  href={post.url || INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group block relative aspect-3/2 w-full overflow-hidden rounded-2xl shadow-md border border-gray-100"
@@ -265,7 +267,7 @@ export default function News() {
                 className={`col-span-1 row-start-3 col-start-${idx + 3}`}
               >
                 <a
-                  href={post.url || '#'}
+                  href={post.url || INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group block relative aspect-3/2 w-full overflow-hidden rounded-2xl shadow-md border border-gray-100"
