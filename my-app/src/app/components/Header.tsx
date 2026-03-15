@@ -91,28 +91,37 @@ export default function Header() {
         style={{
           transform: isVisible
             ? `translateY(-${footerOverlap}px)`
-            : `translateY(calc(80% - ${footerOverlap}px))`,
+            : `translateY(calc(150px - ${footerOverlap}px))`,
         }}
       >
         {/* PC用ナビゲーション (画面下固定・波線デザイン) */}
-        <nav className="hidden md:flex items-center absolute bottom-0 left-0 w-full px-10 py-6 lg:px-16 lg:py-8 pointer-events-auto transition-all duration-500 translate-y-2">
-          <div className="absolute inset-0 z-[-1] pointer-events-none">
-            <svg
-              className="w-full h-full filter drop-shadow-[0_-5px_15px_rgba(0,0,0,0.3)]"
-              viewBox="0 0 1000 120"
-              preserveAspectRatio="none"
-              style={{ height: 'calc(100% + 40px)', bottom: 0, position: 'absolute' }}
-            >
-              <path
-                d="M0 120 L1000 120 V 40 Q 937.5 15, 875 40 Q 812.5 65, 750 40 Q 687.5 15, 625 40 Q 562.5 65, 500 40 Q 437.5 15, 375 40 Q 312.5 65, 250 40 Q 187.5 15, 125 40 Q 62.5 65, 0 40 Z"
-                fill="#C62828"
-              />
-            </svg>
+        <nav className="hidden md:flex items-center absolute bottom-0 left-0 w-full h-[150px] px-10 py-6 lg:px-16 lg:py-8 pointer-events-auto transition-all duration-500">
+          {/* 波線オーバーレイ (収納時も見える部分) */}
+          <div className="absolute top-[-79px] left-0 w-full h-[80px] pointer-events-none">
+            <Image
+              src="/images/header-wave-overlay.png"
+              alt=""
+              fill
+              className="object-cover object-bottom"
+              priority
+            />
+          </div>
+
+          <div className="absolute inset-0 z-[-1] pointer-events-none overflow-hidden">
+            <Image
+              src="/images/header-bg-rect.png"
+              alt=""
+              fill
+              className="object-cover filter drop-shadow-[0_-5px_15px_rgba(0,0,0,0.3)]"
+              priority
+            />
           </div>
 
           <div className="flex items-center w-full justify-between gap-6 lg:gap-10">
-            {/* 左端：ロゴ */}
-            <div className="transition-opacity duration-300 opacity-100">
+            {/* 左端：ロゴ (非表示時は隠す) */}
+            <div
+              className={`transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            >
               <a
                 href="#home"
                 onClick={(e) => {
@@ -133,8 +142,10 @@ export default function Header() {
               </a>
             </div>
 
-            {/* メニュー項目 (横に広く配置) */}
-            <div className="flex-1 flex items-center justify-around gap-4 lg:gap-6 px-4 lg:px-10">
+            {/* メニュー項目 (横に広く配置、非表示時は隠す) */}
+            <div
+              className={`flex-1 flex items-center justify-around gap-4 lg:gap-6 px-4 lg:px-10 transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            >
               {menuItems.map((item) => (
                 <a
                   key={item.label}
