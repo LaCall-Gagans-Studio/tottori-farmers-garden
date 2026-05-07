@@ -11,7 +11,7 @@ export default function Hero() {
       </div>
 
       {/* Building Image */}
-      <div className="absolute inset-0 z-[10] flex items-end justify-center pb-[8%] md:pb-[5%]">
+      <div className="absolute inset-0 z-[10] flex items-end justify-center pb-[8%] md:pb-[calc(5%+160px)]">
         <div className="relative w-[80%] md:w-[60%] aspect-video max-w-4xl">
           <Image
             src="/images/tatemono-v2.png"

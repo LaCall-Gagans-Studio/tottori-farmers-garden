@@ -8,7 +8,7 @@ const COW_ANIMATION_IMAGES = [
   '/images/cow-anim-2.png',
   '/images/cow-anim-3.png',
   '/images/cow-anim-4.png',
-  '/images/cow-anim-5.png',
+  '/images/cow-anim-5-new.png',
 ]
 
 export default function SplashScreen() {

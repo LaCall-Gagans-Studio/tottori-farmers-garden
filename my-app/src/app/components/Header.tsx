@@ -91,32 +91,40 @@ export default function Header() {
         style={{
           transform: isVisible
             ? `translateY(-${footerOverlap}px)`
-            : `translateY(calc(150px - ${footerOverlap}px))`,
+            : `translateY(calc(120px - ${footerOverlap}px))`,
         }}
       >
-        {/* PC用ナビゲーション (画面下固定・波線デザイン) */}
-        <nav className="hidden md:flex items-center absolute bottom-0 left-0 w-full h-[150px] px-10 py-6 lg:px-16 lg:py-8 pointer-events-auto transition-all duration-500">
-          {/* 波線オーバーレイ (収納時も見える部分) */}
-          <div className="absolute top-[-79px] left-0 w-full h-[80px] pointer-events-none">
-            <Image
-              src="/images/header-wave-overlay.png"
-              alt=""
-              fill
-              className="object-cover object-bottom"
-              priority
-            />
-          </div>
+        {/* 波線オーバーレイ (画面幅いっぱいに制限なく表示) */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 w-screen h-[250px] pointer-events-none hidden md:block"
+          style={{
+            bottom: '120px',
+          }}
+        >
+          <Image
+            src="/images/header-wave-overlay-v3.png"
+            alt=""
+            fill
+            className="object-cover object-bottom"
+            priority
+          />
+        </div>
 
+        {/* PC用ナビゲーション (画面下固定・波線デザイン) */}
+        <nav className="hidden md:flex items-center absolute bottom-0 left-0 w-full h-[120px] px-10 py-4 lg:px-16 lg:py-5 pointer-events-auto transition-all duration-500">
           <div className="absolute inset-0 z-[-1] pointer-events-none overflow-hidden">
             <Image
               src="/images/header-bg-rect.png"
               alt=""
               fill
               className="object-cover filter drop-shadow-[0_-5px_15px_rgba(0,0,0,0.3)]"
+              style={{
+                filter:
+                  'brightness(0) saturate(100%) invert(43%) sepia(87%) saturate(2680%) hue-rotate(337deg) brightness(95%) contrast(85%)',
+              }}
               priority
             />
           </div>
-
           <div className="flex items-center w-full justify-between gap-6 lg:gap-10">
             {/* 左端：ロゴ (非表示時は隠す) */}
             <div
@@ -266,7 +274,7 @@ export default function Header() {
             open ? 'translate-x-0' : 'translate-x-full'
           }`}
           style={{
-            backgroundColor: '#C62828',
+            backgroundColor: 'rgb(225, 73, 46)',
           }}
         >
           {/* メニューリスト */}
