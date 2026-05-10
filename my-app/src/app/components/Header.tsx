@@ -86,19 +86,20 @@ export default function Header() {
 
   return (
     <>
-      <header
-        className="fixed bottom-0 left-0 w-full px-6 py-4 md:px-10 md:py-6 flex justify-between items-end z-50 transition-all duration-500 ease-in-out bg-transparent pointer-events-none"
-        style={{
-          transform: isVisible
-            ? `translateY(-${footerOverlap}px)`
-            : `translateY(calc(120px - ${footerOverlap}px))`,
-        }}
-      >
+      <header className="fixed bottom-0 left-0 w-full px-6 py-4 md:px-10 md:py-6 flex justify-between items-end z-50 transition-all duration-500 ease-in-out bg-transparent pointer-events-none">
         {/* 波線オーバーレイ (画面幅いっぱいに制限なく表示) */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 w-screen h-[250px] pointer-events-none hidden md:block"
+          className={`absolute left-1/2 -translate-x-1/2 w-screen h-[250px] pointer-events-none hidden md:block transition-transform ease-in-out ${
+            footerOverlap > 0 ? 'duration-0' : 'duration-500'
+          }`}
           style={{
-            bottom: '120px',
+            bottom: '100px',
+            transform:
+              footerOverlap > 0
+                ? `translateY(${100 - footerOverlap}px)`
+                : isVisible
+                  ? 'translateY(0)'
+                  : 'translateY(100px)',
           }}
         >
           <Image
@@ -111,7 +112,19 @@ export default function Header() {
         </div>
 
         {/* PC用ナビゲーション (画面下固定・波線デザイン) */}
-        <nav className="hidden md:flex items-center absolute bottom-0 left-0 w-full h-[120px] px-10 py-4 lg:px-16 lg:py-5 pointer-events-auto transition-all duration-500">
+        <nav
+          className={`hidden md:flex items-center absolute bottom-0 left-0 w-full h-[100px] px-10 py-2 lg:px-16 lg:py-2.5 pointer-events-auto transition-all ease-in-out ${
+            footerOverlap > 0 ? 'duration-0' : 'duration-500'
+          }`}
+          style={{
+            transform:
+              footerOverlap > 0
+                ? 'translateY(100%)'
+                : isVisible
+                  ? 'translateY(0)'
+                  : 'translateY(100px)',
+          }}
+        >
           <div className="absolute inset-0 z-[-1] pointer-events-none overflow-hidden">
             <Image
               src="/images/header-bg-rect.png"
